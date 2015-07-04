@@ -1,0 +1,13 @@
+import javax.swing.JFrame;
+import javax.swing.Jframe;
+
+public class MainFrame extends JFrame {
+	public MainFrame() {
+		super ("Hello World");
+		
+		frame.setSize(600, 500);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+		
+	}
+}

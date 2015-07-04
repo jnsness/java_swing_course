@@ -1,0 +1,10 @@
+import javax.swing.JPanel;
+
+
+public class Toolbar extends JPanel {
+	private JButton 
+	
+	public Toolbar() {
+		
+	}
+}

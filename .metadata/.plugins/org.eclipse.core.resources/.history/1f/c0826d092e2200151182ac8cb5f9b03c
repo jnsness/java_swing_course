@@ -1,0 +1,4 @@
+
+public class TextPanel extends JPanel {
+
+}

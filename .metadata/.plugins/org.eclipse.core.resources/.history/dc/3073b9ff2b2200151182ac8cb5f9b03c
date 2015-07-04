@@ -1,0 +1,8 @@
+import javax.swing.Jframe;
+
+public class MainFrame extends JFrame {
+	public MainFrame() {
+		super ("Hello World");
+		
+	}
+}
