@@ -1,0 +1,16 @@
+
+public class Utils {
+
+	public static String getFileExtension (string Name) {
+		int pointIndex = name.lastIndexOf (".");
+		
+		if(pointIndex == -1) {
+			return null;
+		}
+		
+		if(pointIndex == name.length()-1) {
+			return null;
+		}
+	}
+	
+}

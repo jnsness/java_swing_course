@@ -1,0 +1,35 @@
+package Gui;
+
+import java.util.List;
+
+import javax.swing.table.AbstractTableModel;
+
+import model.Person;
+
+public class PersonTableModel extends AbstractTableModel {
+
+	private List<Person> db;
+	
+	public PersonTableModel() {
+		this.db = db;
+	}
+	
+	public void setData(List<Person> db) {
+		this.db = db;
+	}
+	@Override
+	public int getColumnCount() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public int getRowCount() {
+		return db.size();
+	}
+
+	public Object getValueAt(int row, int col) {
+		Person person = db.getRow(row);
+		
+	}
+
+}

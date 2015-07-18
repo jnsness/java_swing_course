@@ -1,0 +1,7 @@
+package Gui;
+
+import JPanel;
+
+public class TablePanel extends JPanel {
+
+}

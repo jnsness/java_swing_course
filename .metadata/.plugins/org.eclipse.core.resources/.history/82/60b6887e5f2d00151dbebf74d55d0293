@@ -1,0 +1,8 @@
+package model;
+
+public enum EmploymentCategory {
+	emmployed,
+	selfEmployed,
+	unemployed,
+	other
+}

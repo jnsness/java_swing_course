@@ -1,0 +1,15 @@
+package controller;
+
+import Gui.FormEvent;
+
+public class Controller {
+	
+	public void addPerson(FormEvent ev) {
+		String name = ev.getName();
+		String occupation = ev.getOccupation();
+		int ageCat = ev.getAgeCategory();
+		String empCat = ev.getEmploymentCategory();
+		boolean isUs = ev.isUsCitizen();
+	}
+	
+}

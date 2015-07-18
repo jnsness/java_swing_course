@@ -1,0 +1,10 @@
+package model;
+
+public class Database {
+
+	private ArrayList<Person> people;
+	
+	public DataBase() {
+		people = new ArrayList<Person>();
+	}
+}
