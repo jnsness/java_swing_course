@@ -1,0 +1,41 @@
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+
+import java.awt.Color;
+
+import javax.swing.JButton;
+
+import Gui.FormEvent;
+import Gui.FormPanel.AgeCategory;
+
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+
+public class FormularWindow {
+
+	private JFrame frame;
+	public FormularWindow() {
+		frame = new JFrame();
+		frame.setVisible(true);
+		frame.setSize(800, 600);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		JButton btnWeiter = new JButton("Weiter");
+		frame.getContentPane().add(btnWeiter, BorderLayout.SOUTH);
+		
+		btnWeiter.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent arg0) {
+			System.out.println("das ist ein Test");
+				}
+			}
+			
+		});
+	}
+
+
+
+}

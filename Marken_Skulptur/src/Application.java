@@ -10,7 +10,8 @@ public class Application {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 
-				new BasicFrame();
+				
+				new FormularWindow();
 				
 			}
 		});

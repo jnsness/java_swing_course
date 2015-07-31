@@ -1,0 +1,40 @@
+import javax.swing.JFrame;
+
+import java.awt.GridBagLayout;
+
+import javax.swing.JLabel;
+
+import java.awt.BorderLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+import javax.swing.JButton;
+import javax.swing.JTextField;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.JRadioButton;
+import java.awt.Color;
+
+public class FormWindow extends JFrame {
+
+	public FormWindow() {
+
+		JFrame formFrame = new JFrame("Title");
+		
+		getContentPane().setBackground(Color.YELLOW);
+		formFrame.setBackground(Color.YELLOW);
+		formFrame.setVisible(true);
+		formFrame.setSize(800, 600);
+
+		formFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		getContentPane().setLayout(new GridBagLayout());
+
+		GridBagConstraints gc = new GridBagConstraints();
+		
+
+	}
+
+}

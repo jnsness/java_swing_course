@@ -1,0 +1,41 @@
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
+
+public class FormularWindow {
+
+	private JFrame frame;
+	public FormularWindow() {
+		frame = new JFrame();
+		frame.setVisible(true);
+		frame.setSize(800, 600);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		JButton btnWeiter = new JButton("Weiter");
+		frame.getContentPane().add(btnWeiter, BorderLayout.SOUTH);
+		
+		btnWeiter.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("test");
+				frame.setVisible(false);
+				frame.repaint();
+				
+				LogoFrame.frame.setVisible(true);
+				LogoFrame.frame.repaint();
+				
+				
+			}
+
+			
+		});
+	}
+
+
+
+}
