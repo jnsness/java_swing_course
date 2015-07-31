@@ -1,0 +1,18 @@
+import java.awt.Dimension;
+
+import javax.swing.JFrame;
+
+
+public static void class MainFrame extends JFrame {
+
+	public MainFrame() {
+			
+		
+		
+		setMinimumSize(new Dimension(500, 400));
+		setSize(600, 500);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setVisible(true);
+	}
+
+}

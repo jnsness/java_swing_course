@@ -1,0 +1,20 @@
+import model.Database;
+
+
+public class TestDatabase {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println("Tested");
+		
+		Database db = new Database();
+		try {
+			db.connect();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		db.disconnect();
+	}
+
+}

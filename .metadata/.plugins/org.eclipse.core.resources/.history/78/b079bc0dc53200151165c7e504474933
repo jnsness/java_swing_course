@@ -1,0 +1,30 @@
+import java.sql.SQLException;
+
+import model.AgeCategory;
+import model.Database;
+
+
+public class TestDatabase {
+
+	public static void main(String[] args) {
+		System.out.println("Class TestDatabase aufgerufen");
+		
+		Database db = new Database();
+		try {
+			db.connect();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		db.addPerson(new Person("Joe", "builder", AgeCategory.adult, EmploymentCategory.employed, "777", true, Gender.male));
+		
+		try {
+			db.save();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		db.disconnect();
+	}
+
+}

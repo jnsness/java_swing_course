@@ -1,0 +1,8 @@
+import javax.swing.JFrame;
+
+
+public class FormWindow extends JFrame {
+	public FormWindow() {
+	}
+
+}

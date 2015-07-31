@@ -1,0 +1,4 @@
+
+public class FormWindow extends JFrame {
+
+}

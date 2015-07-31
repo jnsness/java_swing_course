@@ -1,9 +1,12 @@
 package model;
 
-public class Person {
-	
+import java.io.Serializable;
+
+public class Person implements Serializable {
+
+	private static final long serialVersionUID = -8219218627533074108L;
 	private int id;
-	private static int count = 0;
+	private static int count = 1;
 	
 	private String name;
 	private String occupation;

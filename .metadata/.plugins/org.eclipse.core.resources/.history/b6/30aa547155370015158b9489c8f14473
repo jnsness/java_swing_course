@@ -1,0 +1,4 @@
+
+public class DraggableComponent extends JComponent {
+
+}
