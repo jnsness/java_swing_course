@@ -12,10 +12,22 @@
 		<item value="337" key="y"/>
 		<item value="365" key="height"/>
 	</section>
+	<section name="org.eclipse.wb.internal.swing.model.property.editor.icon.IconPropertyEditor$ImageDialog">
+		<item value="519" key="x"/>
+		<item value="881" key="width"/>
+		<item value="230" key="y"/>
+		<item value="580" key="height"/>
+	</section>
 	<section name="org.eclipse.wb.internal.swing.model.property.editor.models.spinner.SpinnerModelDialog">
 		<item value="697" key="x"/>
 		<item value="525" key="width"/>
 		<item value="289" key="y"/>
 		<item value="462" key="height"/>
+	</section>
+	<section name="org.eclipse.wb.internal.swing.model.layout.gbl.ui.ColumnEditDialog">
+		<item value="790" key="x"/>
+		<item value="340" key="width"/>
+		<item value="336" key="y"/>
+		<item value="367" key="height"/>
 	</section>
 </section>

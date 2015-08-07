@@ -1,0 +1,4 @@
+
+public class DragPanel extends JPanel {
+
+}
