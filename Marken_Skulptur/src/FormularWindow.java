@@ -109,5 +109,7 @@ public class FormularWindow {
 	public static String collectValues() {
 		String valueCatComboBox = (String) catComboBox.getSelectedItem();
 		return valueCatComboBox;
+		
+		
 	}
 }

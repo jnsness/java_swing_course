@@ -22,6 +22,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.image.ImageObserver;
 
@@ -38,11 +39,15 @@ public class DraggableLogoComponent extends DraggableComponent implements ImageO
     protected Image image;
     private boolean autoSize = false;
     private Dimension autoSizeDimension = new Dimension(0, 0);
-
-    public DraggableLogoComponent() {
+    private String fileName;
+    private Point location;
+    
+    public DraggableLogoComponent(String fileName) {
         super();
         setLayout(null);
         setBackground(Color.black);
+        this.fileName = fileName;
+        
     }
 
     /**
@@ -161,7 +166,8 @@ public class DraggableLogoComponent extends DraggableComponent implements ImageO
      * @return the value of image
      */
     public Image getImage() {
-        return image;
+        System.out.println(image);
+    	return image;
     }
 
     /**
@@ -184,4 +190,11 @@ public class DraggableLogoComponent extends DraggableComponent implements ImageO
         repaint();
         setAutoSizeDimension();
     }
+
+	public String getFileName() {
+		return fileName;
+	}
+    
+    
+    
 }

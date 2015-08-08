@@ -1,22 +1,18 @@
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Image;
+import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.io.File;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.LineBorder;
-import javax.swing.JButton;
-import javax.swing.BoxLayout;
 
 public class LogoFrame extends JFrame {
 
@@ -24,53 +20,58 @@ public class LogoFrame extends JFrame {
 	private JPanel buttonPanel;
 	private JButton btnRedo;
 	private JButton btnSave;
-
+	public static ArrayList<DraggableLogoComponent> logolist = new ArrayList<DraggableLogoComponent>();
+	
 	public LogoFrame() {
-		
+
 		getContentPane().setLayout(new BorderLayout());
-		
+
 		setVisible(true);
 		setSize(800, 600);
 		setResizable(false);
-		
-//		Set Location to Location of previous Window
+
+		// Set Location to Location of previous Window
 		setLocation(FormularWindow.frameLocation);
-		
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-// dragPanel Configuration
+
+		// dragPanel Configuration
 		dragPanel = new JPanel();
 		dragPanel.setLayout(null);
-		dragPanel.setPreferredSize(new Dimension(600,0));
+		dragPanel.setPreferredSize(new Dimension(600, 0));
 		dragPanel.setBorder(BorderFactory.createEtchedBorder());
-		
-//		buttonPanel Configuration
-		
+
+		// buttonPanel Configuration
+
 		buttonPanel = new JPanel();
 		buttonPanel.setLayout(new FlowLayout());
-		buttonPanel.setPreferredSize(new Dimension(180,0));
+		buttonPanel.setPreferredSize(new Dimension(180, 0));
 		buttonPanel.setBorder(BorderFactory.createEtchedBorder());
-		
+
 		btnRedo = new JButton();
 		btnRedo.setText("Redo");
 		buttonPanel.add(btnRedo);
-		
-		btnSave = new JButton();
-		btnSave.setText("Save");
-		buttonPanel.add(btnSave);
-		
 
-		
-//		add Panels to Frame
-		
-		getContentPane().add(buttonPanel, BorderLayout.EAST);
-		getContentPane().add(dragPanel, BorderLayout.WEST);
-		
 		btnRedo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				loadLogos();
 			}
 		});
+
+		btnSave = new JButton();
+		btnSave.setText("Save");
+		buttonPanel.add(btnSave);
+
+		btnSave.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GetLocations();
+			}
+		});
+
+		// add Panels to Frame
+
+		getContentPane().add(buttonPanel, BorderLayout.EAST);
+		getContentPane().add(dragPanel, BorderLayout.WEST);
 
 		/*
 		 * Is good create a Thread to manipulate Forms and Files. In this
@@ -78,6 +79,9 @@ public class LogoFrame extends JFrame {
 		 * graphics operations needs to be elaborated after pending events are
 		 * processed
 		 */
+		
+		
+		
 		java.awt.EventQueue.invokeLater(new Runnable() {
 
 			public void run() {
@@ -101,10 +105,8 @@ public class LogoFrame extends JFrame {
 
 		for (int i = 0; i <= 29; i++) {
 			String fileName = String.valueOf(fa[i]);
-
 			addNewLogo(fileName, i);
 		}
-
 		dragPanel.repaint();
 	}
 
@@ -113,8 +115,11 @@ public class LogoFrame extends JFrame {
 		Image img = Toolkit.getDefaultToolkit().createImage(fileName);
 
 		// Creates a draggableImageComponent and adds loaded image
-		DraggableLogoComponent logo = new DraggableLogoComponent();
+		DraggableLogoComponent logo = new DraggableLogoComponent(fileName);
 		dragPanel.add(logo);// Adds this component to main container
+		
+		logolist.add(logo);
+		
 		logo.setImage(img);// Sets image
 		logo.setAutoSize(true);// The component get ratio w/h of source image
 		logo.setOverbearing(true);// On click ,this panel gains lowest z-buffer
@@ -137,5 +142,16 @@ public class LogoFrame extends JFrame {
 		logo.setLocation(columnWidht, i * 50);
 
 		dragPanel.repaint();
+		
 	}
+
+	public static void GetLocations() {
+		for(DraggableLogoComponent i : logolist){
+			Point location = i.getLocation();
+			String name = i.getFileName();
+			System.out.println(name + ": " + location);
+		}
+		
+	}
+
 }
