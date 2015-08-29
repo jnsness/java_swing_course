@@ -165,10 +165,6 @@ public class LogoFrame extends JFrame {
 		try
 		{
 			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("results/test.csv"), "UTF-8"));
-			
-			bw.write("logos, location");
-			bw.newLine();
-			
 			for (DraggableLogoComponent logo : logolist)
 			{
 				StringBuffer oneLine = new StringBuffer();
