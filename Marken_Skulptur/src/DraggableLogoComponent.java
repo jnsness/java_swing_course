@@ -166,7 +166,6 @@ public class DraggableLogoComponent extends DraggableComponent implements ImageO
      * @return the value of image
      */
     public Image getImage() {
-        System.out.println(image);
     	return image;
     }
 

@@ -93,6 +93,8 @@ public class LogoFrame extends JFrame {
 
 			public void run() {
 				loadLogos();
+				
+
 			}
 		});
 	}
@@ -105,8 +107,7 @@ public class LogoFrame extends JFrame {
 
 		// Array to give every image from folder
 
-		String imageUrl = "images/" + FormularWindow.collectValues();
-		System.out.println(imageUrl);
+		String imageUrl = "images/" + FormularWindow.getImageCategory();
 		File f = new File(imageUrl);
 		File[] fa = f.listFiles();
 
@@ -156,7 +157,6 @@ public class LogoFrame extends JFrame {
 		for(DraggableLogoComponent i : logolist){
 			Point location = i.getLocation();
 			String name = i.getFileName();
-			System.out.println(name + ": " + location);
 		}
 		
 	}
@@ -166,12 +166,25 @@ public class LogoFrame extends JFrame {
 		{
 			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("results/test.csv"), "UTF-8"));
 			
-			bw.write("logos, location");
+			bw.write("first name, name, occupation, age, logos, location");
 			bw.newLine();
 			
 			for (DraggableLogoComponent logo : logolist)
 			{
+				//Collect personal values from Formular Window
 				StringBuffer oneLine = new StringBuffer();
+				oneLine.append((String)FormularWindow.getTxtName().getText()); 
+				oneLine.append(",");
+				oneLine.append((String)FormularWindow.getTxtNachname().getText()); 
+				oneLine.append(",");
+				oneLine.append((String)FormularWindow.getTxtBeruf().getText()); 
+				oneLine.append(",");
+				oneLine.append((Integer)FormularWindow.getAgeSpinner().getValue());
+				oneLine.append(",");
+				oneLine.append((String)FormularWindow.getSexComboBox().getSelectedItem());
+				oneLine.append(",");
+				
+				//Collect logo Name and location
 				oneLine.append(logo.getFileName());
 				oneLine.append(",");
 				oneLine.append(logo.getLocation());

@@ -22,9 +22,12 @@ public class FormularWindow {
 
 	private JFrame frame;
 	private static JComboBox catComboBox;
-	private JTextField txtName;
-	private JTextField txtNachname;
-	private JTextField txtBeruf;
+	private static JTextField txtName;
+	private static JTextField txtNachname;
+	private static JTextField txtBeruf;
+	private static JSpinner ageSpinner;
+	private static JComboBox sexComboBox;
+	
 
 	public FormularWindow() {
 		frame = new JFrame();
@@ -43,33 +46,33 @@ public class FormularWindow {
 		catComboBox.setBounds(200, 399, 128, 20);
 		frame.getContentPane().add(catComboBox);
 
-		JLabel lblCategory = new JLabel("Category");
-		lblCategory.setBounds(86, 402, 71, 14);
-		frame.getContentPane().add(lblCategory);
+
 
 		txtName = new JTextField();
-		txtName.setText("Vorname");
 		txtName.setBounds(200, 42, 86, 20);
 		frame.getContentPane().add(txtName);
 		txtName.setColumns(10);
 
 		txtNachname = new JTextField();
-		txtNachname.setText("Nachname");
 		txtNachname.setBounds(200, 73, 86, 20);
 		frame.getContentPane().add(txtNachname);
 		txtNachname.setColumns(10);
 
 		txtBeruf = new JTextField();
-		txtBeruf.setText("Beruf");
 		txtBeruf.setBounds(200, 104, 86, 20);
 		frame.getContentPane().add(txtBeruf);
 		txtBeruf.setColumns(10);
 
-		JSpinner spinner = new JSpinner();
-		spinner.setModel(new SpinnerNumberModel(18, 1, 99, 1));
-		spinner.setBounds(200, 135, 86, 20);
-		frame.getContentPane().add(spinner);
+		ageSpinner = new JSpinner();
+		ageSpinner.setModel(new SpinnerNumberModel(18, 1, 99, 1));
+		ageSpinner.setBounds(200, 135, 86, 20);
+		frame.getContentPane().add(ageSpinner);
 
+		sexComboBox = new JComboBox();
+		sexComboBox.setModel(new DefaultComboBoxModel(new String[] {"Maennlich", "Weiblich"}));
+		sexComboBox.setBounds(200, 175, 86, 20);
+		frame.getContentPane().add(sexComboBox);
+		
 		JLabel lblVorname = new JLabel("Vorname");
 		lblVorname.setBounds(86, 45, 71, 14);
 		frame.getContentPane().add(lblVorname);
@@ -85,6 +88,15 @@ public class FormularWindow {
 		JLabel lblAlter = new JLabel("Alter");
 		lblAlter.setBounds(86, 138, 46, 14);
 		frame.getContentPane().add(lblAlter);
+		
+		JLabel lblGeschlecht = new JLabel("Geschlecht");
+		lblGeschlecht.setBounds(86, 178, 86, 14);
+		frame.getContentPane().add(lblGeschlecht);
+		
+		JLabel lblCategory = new JLabel("Category");
+		lblCategory.setBounds(86, 402, 71, 14);
+		frame.getContentPane().add(lblCategory);
+		
 
 		btnWeiter.addActionListener(new ActionListener() {
 
@@ -106,10 +118,30 @@ public class FormularWindow {
 		});
 	}
 
-	public static String collectValues() {
+	public static String getImageCategory() {
 		String valueCatComboBox = (String) catComboBox.getSelectedItem();
 		return valueCatComboBox;
-		
-		
 	}
+
+	public static JTextField getTxtName() {
+		return txtName;
+	}
+
+	public static JTextField getTxtNachname() {
+		return txtNachname;
+	}
+
+	public static JTextField getTxtBeruf() {
+		return txtBeruf;
+	}
+
+	public static JSpinner getAgeSpinner() {
+		return ageSpinner;
+	}
+
+	public static JComboBox getSexComboBox() {
+		return sexComboBox;
+	}
+	
+	
 }
