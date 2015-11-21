@@ -1,0 +1,15 @@
+import java.util.UUID;
+
+public class GenerateUUID {
+  
+  public final GenerateUUID() {
+
+	UUID idOne = UUID.randomUUID();
+    log("UUID One: " + idOne);
+
+  }
+  
+  private static void log(Object aObject){
+    System.out.println( String.valueOf(aObject) );
+  }
+} 

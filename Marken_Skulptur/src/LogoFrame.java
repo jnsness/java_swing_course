@@ -28,12 +28,12 @@ public class LogoFrame extends JFrame {
 	private JButton btnSave;
 	public static ArrayList<DraggableLogoComponent> logolist = new ArrayList<DraggableLogoComponent>();
 	
-	public LogoFrame() {
+	public LogoFrame(String uuid) {
 
 		getContentPane().setLayout(new BorderLayout());
 
 		setVisible(true);
-		setSize(800, 600);
+		setSize(1200, 900);
 		setResizable(false);
 
 		// Set Location to Location of previous Window
@@ -44,7 +44,7 @@ public class LogoFrame extends JFrame {
 		// dragPanel Configuration
 		dragPanel = new JPanel();
 		dragPanel.setLayout(null);
-		dragPanel.setPreferredSize(new Dimension(600, 0));
+		dragPanel.setPreferredSize(new Dimension(900, 0));
 		dragPanel.setBorder(BorderFactory.createEtchedBorder());
 
 		// buttonPanel Configuration
@@ -71,7 +71,8 @@ public class LogoFrame extends JFrame {
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				GetLocations();
-				writeToCSV(logolist);
+				new DbUpdateLogoData(uuid,logolist);
+				
 			}
 		});
 
@@ -111,7 +112,7 @@ public class LogoFrame extends JFrame {
 		File f = new File(imageUrl);
 		File[] fa = f.listFiles();
 
-		for (int i = 0; i <= 29; i++) {
+		for (int i = 0; i <= 10; i++) {
 			String fileName = String.valueOf(fa[i]);
 			addNewLogo(fileName, i);
 		}
@@ -132,23 +133,11 @@ public class LogoFrame extends JFrame {
 		logo.setAutoSize(true);// The component get ratio w/h of source image
 		logo.setOverbearing(true);// On click ,this panel gains lowest z-buffer
 
-		logo.setSize(50, 50);
-
-		// Calculation for manual float design. Every Column can have 10 logos,
-		// then it will break to next column
-
-		int columnWidht;
-		if (i >= 0 && i <= 9) {
-			columnWidht = 0 * 50;
-		} else if (i > 9 && i < 20) {
-			columnWidht = 1 * 50;
-			i = i - 10;
-		} else {
-			columnWidht = 2 * 50;
-			i = i - 20;
-		}
-		logo.setLocation(columnWidht, i * 50);
-
+		logo.setSize(75, 75);
+		
+		//randomize location of logos
+		logo.setLocation((int)(Math.random()*830), (int)(Math.random()*810));
+	
 		dragPanel.repaint();
 		
 	}
@@ -161,43 +150,6 @@ public class LogoFrame extends JFrame {
 		
 	}
 	
-	private static void writeToCSV(ArrayList<DraggableLogoComponent> logolist) {
-		try
-		{
-			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("results/test.csv"), "UTF-8"));
-			
-			bw.write("first name, name, occupation, age, logos, location");
-			bw.newLine();
-			
-			for (DraggableLogoComponent logo : logolist)
-			{
-				//Collect personal values from Formular Window
-				StringBuffer oneLine = new StringBuffer();
-				oneLine.append((String)FormularWindow.getTxtName().getText()); 
-				oneLine.append(",");
-				oneLine.append((String)FormularWindow.getTxtNachname().getText()); 
-				oneLine.append(",");
-				oneLine.append((String)FormularWindow.getTxtBeruf().getText()); 
-				oneLine.append(",");
-				oneLine.append((Integer)FormularWindow.getAgeSpinner().getValue());
-				oneLine.append(",");
-				oneLine.append((String)FormularWindow.getSexComboBox().getSelectedItem());
-				oneLine.append(",");
-				
-				//Collect logo Name and location
-				oneLine.append(logo.getFileName());
-				oneLine.append(",");
-				oneLine.append(logo.getLocation());
-				bw.write(oneLine.toString());
-				bw.newLine();
-			}
-			bw.flush();
-            bw.close();
-		}
-		catch (UnsupportedEncodingException e) {}
-        catch (FileNotFoundException e){}
-        catch (IOException e){}
-		
-	}
+
 
 }

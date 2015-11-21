@@ -1,0 +1,25 @@
+package de.hpi.javaide.breakout.basics;
+
+import java.awt.Dimension;
+import java.awt.Point;
+import java.awt.geom.Ellipse2D;
+
+import de.hpi.javaide.breakout.starter.Game;
+
+public abstract class Elliptic extends CollisionObject {
+
+	public Elliptic(Game game, Point position, Dimension dimension) {
+		super(game, position, dimension);
+		geometry = new Ellipse2D.Float(getX(), getY(), getWidth(), getHeight());
+	}
+
+	public Elliptic(Game game) {
+		this(game, new Point(0, 0), new Dimension(10, 10));
+	}
+
+	@Override
+	public void update(Point position, Dimension dimension) {
+		super.update(position, dimension);
+		((Ellipse2D) this.getGeometry()).setFrame(getX(), getY(), getWidth(), getHeight());
+	}
+}

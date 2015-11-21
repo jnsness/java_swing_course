@@ -1,31 +1,31 @@
 first name, name, occupation, age, logos, location
-Sarah,Kuennecke,sie ist sueeess,29,Weiblich,images\cars\Audi.jpg,java.awt.Point[x=0,y=0]
-Sarah,Kuennecke,sie ist sueeess,29,Weiblich,images\cars\BMW.jpg,java.awt.Point[x=0,y=50]
-Sarah,Kuennecke,sie ist sueeess,29,Weiblich,images\cars\Chrysler.jpg,java.awt.Point[x=0,y=100]
-Sarah,Kuennecke,sie ist sueeess,29,Weiblich,images\cars\Daewoo.jpg,java.awt.Point[x=0,y=150]
-Sarah,Kuennecke,sie ist sueeess,29,Weiblich,images\cars\Daihatsu.jpg,java.awt.Point[x=0,y=200]
-Sarah,Kuennecke,sie ist sueeess,29,Weiblich,images\cars\Dodge.jpg,java.awt.Point[x=0,y=250]
-Sarah,Kuennecke,sie ist sueeess,29,Weiblich,images\cars\Ferrari.jpg,java.awt.Point[x=0,y=300]
-Sarah,Kuennecke,sie ist sueeess,29,Weiblich,images\cars\Fiat.jpg,java.awt.Point[x=0,y=350]
-Sarah,Kuennecke,sie ist sueeess,29,Weiblich,images\cars\GM.jpg,java.awt.Point[x=0,y=400]
-Sarah,Kuennecke,sie ist sueeess,29,Weiblich,images\cars\Honda.jpg,java.awt.Point[x=0,y=450]
-Sarah,Kuennecke,sie ist sueeess,29,Weiblich,images\cars\Hyundai.jpg,java.awt.Point[x=50,y=0]
-Sarah,Kuennecke,sie ist sueeess,29,Weiblich,images\cars\Infiniti.jpg,java.awt.Point[x=50,y=50]
-Sarah,Kuennecke,sie ist sueeess,29,Weiblich,images\cars\Kia.jpg,java.awt.Point[x=50,y=100]
-Sarah,Kuennecke,sie ist sueeess,29,Weiblich,images\cars\Lada.jpg,java.awt.Point[x=50,y=150]
-Sarah,Kuennecke,sie ist sueeess,29,Weiblich,images\cars\Lamborghini.jpg,java.awt.Point[x=50,y=200]
-Sarah,Kuennecke,sie ist sueeess,29,Weiblich,images\cars\Land_Rover.jpg,java.awt.Point[x=50,y=250]
-Sarah,Kuennecke,sie ist sueeess,29,Weiblich,images\cars\Lexus.jpg,java.awt.Point[x=50,y=300]
-Sarah,Kuennecke,sie ist sueeess,29,Weiblich,images\cars\Lotus_Cars.jpg,java.awt.Point[x=50,y=350]
-Sarah,Kuennecke,sie ist sueeess,29,Weiblich,images\cars\Maserati.jpg,java.awt.Point[x=50,y=400]
-Sarah,Kuennecke,sie ist sueeess,29,Weiblich,images\cars\Mazda.jpg,java.awt.Point[x=50,y=450]
-Sarah,Kuennecke,sie ist sueeess,29,Weiblich,images\cars\MG.jpg,java.awt.Point[x=100,y=0]
-Sarah,Kuennecke,sie ist sueeess,29,Weiblich,images\cars\Porsche.jpg,java.awt.Point[x=356,y=141]
-Sarah,Kuennecke,sie ist sueeess,29,Weiblich,images\cars\Proton.jpg,java.awt.Point[x=100,y=100]
-Sarah,Kuennecke,sie ist sueeess,29,Weiblich,images\cars\Rolls-Royce.jpg,java.awt.Point[x=100,y=150]
-Sarah,Kuennecke,sie ist sueeess,29,Weiblich,images\cars\Rover.jpg,java.awt.Point[x=421,y=323]
-Sarah,Kuennecke,sie ist sueeess,29,Weiblich,images\cars\Saab.jpg,java.awt.Point[x=311,y=250]
-Sarah,Kuennecke,sie ist sueeess,29,Weiblich,images\cars\SsangYong.jpg,java.awt.Point[x=328,y=315]
-Sarah,Kuennecke,sie ist sueeess,29,Weiblich,images\cars\Subaru.jpg,java.awt.Point[x=352,y=460]
-Sarah,Kuennecke,sie ist sueeess,29,Weiblich,images\cars\Toyota.jpg,java.awt.Point[x=231,y=445]
-Sarah,Kuennecke,sie ist sueeess,29,Weiblich,images\cars\Volvo.jpg,java.awt.Point[x=100,y=450]
+,,,18,Maennlich,images\cars\Audi.jpg,null
+,,,18,Maennlich,images\cars\BMW.jpg,null
+,,,18,Maennlich,images\cars\Chrysler.jpg,null
+,,,18,Maennlich,images\cars\Daewoo.jpg,null
+,,,18,Maennlich,images\cars\Daihatsu.jpg,null
+,,,18,Maennlich,images\cars\Dodge.jpg,null
+,,,18,Maennlich,images\cars\Ferrari.jpg,null
+,,,18,Maennlich,images\cars\Fiat.jpg,null
+,,,18,Maennlich,images\cars\GM.jpg,null
+,,,18,Maennlich,images\cars\Honda.jpg,null
+,,,18,Maennlich,images\cars\Hyundai.jpg,null
+,,,18,Maennlich,images\cars\Infiniti.jpg,null
+,,,18,Maennlich,images\cars\Kia.jpg,null
+,,,18,Maennlich,images\cars\Lada.jpg,null
+,,,18,Maennlich,images\cars\Lamborghini.jpg,null
+,,,18,Maennlich,images\cars\Land_Rover.jpg,null
+,,,18,Maennlich,images\cars\Lexus.jpg,null
+,,,18,Maennlich,images\cars\Lotus_Cars.jpg,null
+,,,18,Maennlich,images\cars\Maserati.jpg,null
+,,,18,Maennlich,images\cars\Mazda.jpg,null
+,,,18,Maennlich,images\cars\MG.jpg,null
+,,,18,Maennlich,images\cars\Porsche.jpg,null
+,,,18,Maennlich,images\cars\Proton.jpg,null
+,,,18,Maennlich,images\cars\Rolls-Royce.jpg,null
+,,,18,Maennlich,images\cars\Rover.jpg,null
+,,,18,Maennlich,images\cars\Saab.jpg,null
+,,,18,Maennlich,images\cars\SsangYong.jpg,null
+,,,18,Maennlich,images\cars\Subaru.jpg,null
+,,,18,Maennlich,images\cars\Toyota.jpg,null
+,,,18,Maennlich,images\cars\Volvo.jpg,null

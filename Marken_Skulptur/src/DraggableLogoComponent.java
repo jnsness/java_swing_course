@@ -114,6 +114,7 @@ public class DraggableLogoComponent extends DraggableComponent implements ImageO
         return true;
     }
 
+    
     /**
      * This method is used to resize component considering w/h ratio of image. 
      */
@@ -193,7 +194,12 @@ public class DraggableLogoComponent extends DraggableComponent implements ImageO
 	public String getFileName() {
 		return fileName;
 	}
-    
+
+	public Point getLocation() {
+		return location;
+	}
+
+	
     
     
 }
