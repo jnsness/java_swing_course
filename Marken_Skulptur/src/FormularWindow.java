@@ -115,7 +115,7 @@ public class FormularWindow {
 				// when "next" is clicked. Not before that moment
 				new GenerateUUID();
 				System.out.println(GenerateUUID.id);
-				new DbUpdatePersonalData(GenerateUUID.id.toString(),txtName.getText(),txtNachname.getText(),txtBeruf.getText(), (int)ageSpinner.getValue(),sexComboBox.getSelectedIndex());
+				new DbAccess().DbSavePersonalData(GenerateUUID.id.toString(),txtName.getText(),txtNachname.getText(),txtBeruf.getText(), (int)ageSpinner.getValue(),sexComboBox.getSelectedIndex());
 				new LogoFrame(GenerateUUID.id.toString());
 			}
 

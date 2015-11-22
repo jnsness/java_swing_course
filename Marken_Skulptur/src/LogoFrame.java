@@ -71,8 +71,7 @@ public class LogoFrame extends JFrame {
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				GetLocations();
-				new DbUpdateLogoData(uuid,logolist);
-				
+				new DbAccess().DbSaveLogoData(uuid, logolist);
 			}
 		});
 
@@ -149,7 +148,5 @@ public class LogoFrame extends JFrame {
 		}
 		
 	}
-	
-
 
 }
