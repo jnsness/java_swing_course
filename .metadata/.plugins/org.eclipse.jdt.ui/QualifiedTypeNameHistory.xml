@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="java.util.concurrent.CancellationException"/>
-<fullyQualifiedTypeName name="javax.swing.JPasswordField"/>
-<fullyQualifiedTypeName name="Gui.PrefsDialog"/>
-<fullyQualifiedTypeName name="Gui.PrefsListener"/>
-<fullyQualifiedTypeName name="java.util.prefs.Preferences"/>
 <fullyQualifiedTypeName name="java.awt.Color"/>
 <fullyQualifiedTypeName name="javax.swing.text.FlowView.FlowStrategy"/>
 <fullyQualifiedTypeName name="java.awt.GridBagConstraints"/>
@@ -25,7 +20,6 @@
 <fullyQualifiedTypeName name="BasicFrame"/>
 <fullyQualifiedTypeName name="Handlerclass"/>
 <fullyQualifiedTypeName name="javax.swing.JPanel"/>
-<fullyQualifiedTypeName name="javax.swing.ImageIcon"/>
 <fullyQualifiedTypeName name="java.awt.Rectangle"/>
 <fullyQualifiedTypeName name="java.awt.event.MouseEvent"/>
 <fullyQualifiedTypeName name="javax.swing.border.LineBorder"/>
@@ -60,4 +54,10 @@
 <fullyQualifiedTypeName name="DraggableLogoComponent"/>
 <fullyQualifiedTypeName name="java.lang.Math"/>
 <fullyQualifiedTypeName name="DbAccess"/>
+<fullyQualifiedTypeName name="javax.swing.ImageIcon"/>
+<fullyQualifiedTypeName name="java.awt.image.BufferedImage"/>
+<fullyQualifiedTypeName name="java.awt.Robot"/>
+<fullyQualifiedTypeName name="javax.imageio.ImageIO"/>
+<fullyQualifiedTypeName name="SnapShot"/>
+<fullyQualifiedTypeName name="java.net.URL"/>
 </qualifiedTypeNameHistroy>

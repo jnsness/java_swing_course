@@ -14,7 +14,7 @@ public class DbAccess {
 
 	public DbAccess() {}
 	
-	public void DbSavePersonalData (String id,String txtName, String txtNachname, String txtBeruf, int ageSpinner, int sexCombo) {
+	public void DbSavePersonalData (String uuid,String txtName, String txtNachname, String txtBeruf, int ageSpinner, int sexCombo) {
 
 		try {
 			Class.forName("org.sqlite.JDBC");
@@ -28,7 +28,7 @@ public class DbAccess {
 		try {
 			stmt = c.createStatement();
 			String sql = 
-					"INSERT INTO personal_info (ID,Vorname,Nachname,Beruf,Age,Geschlecht) VALUES ("+"'"+id+"'"+","+"'"+txtName+"'"+","+"'"+txtNachname+"'"+","+"'"+txtBeruf+"'"+","+ ageSpinner +","+ sexCombo +");";
+					"INSERT INTO personal_info (UUID,Vorname,Nachname,Beruf,Age,Geschlecht) VALUES ("+"'"+uuid+"'"+","+"'"+txtName+"'"+","+"'"+txtNachname+"'"+","+"'"+txtBeruf+"'"+","+ ageSpinner +","+ sexCombo +");";
 					
 			c.setAutoCommit(false);
 			stmt.executeUpdate(sql);
@@ -64,7 +64,7 @@ public class DbAccess {
 			String logoname = logo.getFileName();
 			
 			String sql = 
-					"INSERT INTO logo_info (ID,logo_name,xcord,ycord) VALUES ("+"'"+uuid+"'"+","+"'"+logoname+"'"+","+ x +","+ y +");";
+					"INSERT INTO logo_info (UUID,logo_name,xcord,ycord) VALUES ("+"'"+uuid+"'"+","+"'"+logoname+"'"+","+ x +","+ y +");";
 			stmt.executeUpdate(sql);
 			}
 			

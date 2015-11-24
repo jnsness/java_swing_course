@@ -49,27 +49,27 @@ public class FormularWindow {
 
 
 		txtName = new JTextField();
-		txtName.setBounds(200, 42, 86, 20);
+		txtName.setBounds(200, 42, 154, 20);
 		frame.getContentPane().add(txtName);
 		txtName.setColumns(10);
 
 		txtNachname = new JTextField();
-		txtNachname.setBounds(200, 73, 86, 20);
+		txtNachname.setBounds(200, 73, 154, 20);
 		frame.getContentPane().add(txtNachname);
 		txtNachname.setColumns(10);
 
 		txtBeruf = new JTextField();
-		txtBeruf.setBounds(200, 104, 86, 20);
+		txtBeruf.setBounds(200, 104, 154, 20);
 		frame.getContentPane().add(txtBeruf);
 		txtBeruf.setColumns(10);
 
 		ageSpinner = new JSpinner();
-		ageSpinner.setModel(new SpinnerNumberModel(18, 1, 99, 1));
+		ageSpinner.setModel(new SpinnerNumberModel(30, 1, 99, 1));
 		ageSpinner.setBounds(200, 135, 86, 20);
 		frame.getContentPane().add(ageSpinner);
 
 		sexComboBox = new JComboBox();
-		sexComboBox.setModel(new DefaultComboBoxModel(new String[] {"Maennlich", "Weiblich"}));
+		sexComboBox.setModel(new DefaultComboBoxModel(new String[] {"Weiblich", "Maennlich"}));
 		sexComboBox.setBounds(200, 175, 86, 20);
 		frame.getContentPane().add(sexComboBox);
 	

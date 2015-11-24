@@ -3,22 +3,21 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Image;
 import java.awt.Point;
+import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedWriter;
+import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JLabel;
 
 public class LogoFrame extends JFrame {
 
@@ -51,13 +50,16 @@ public class LogoFrame extends JFrame {
 
 		buttonPanel = new JPanel();
 		buttonPanel.setLayout(new FlowLayout());
-		buttonPanel.setPreferredSize(new Dimension(180, 0));
+		buttonPanel.setPreferredSize(new Dimension(290, 0));
 		buttonPanel.setBorder(BorderFactory.createEtchedBorder());
 
 		btnRedo = new JButton();
 		btnRedo.setText("Redo");
 		buttonPanel.add(btnRedo);
 
+
+		
+		
 		btnRedo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				loadLogos();
@@ -72,6 +74,7 @@ public class LogoFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				GetLocations();
 				new DbAccess().DbSaveLogoData(uuid, logolist);
+				new SnapShot().getSnapShot(dragPanel, uuid);
 			}
 		});
 
@@ -79,6 +82,8 @@ public class LogoFrame extends JFrame {
 
 		getContentPane().add(buttonPanel, BorderLayout.EAST);
 		getContentPane().add(dragPanel, BorderLayout.WEST);
+		
+
 
 		/*
 		 * Is good create a Thread to manipulate Forms and Files. In this
@@ -115,7 +120,18 @@ public class LogoFrame extends JFrame {
 			String fileName = String.valueOf(fa[i]);
 			addNewLogo(fileName, i);
 		}
+		
+		//Load "youLogo" | Personal image
+		ImageIcon icon = new ImageIcon("images/you_point.png");
+		JLabel lblYou = new JLabel("You");
+		lblYou.setBounds(425, 399, 90, 90);
+		lblYou.setIcon(icon);
+		dragPanel.add(lblYou);
+		
+		
 		dragPanel.repaint();
+		
+		
 	}
 
 	public static void addNewLogo(String fileName, int i) {
@@ -148,5 +164,8 @@ public class LogoFrame extends JFrame {
 		}
 		
 	}
+	
 
+	
+	
 }
