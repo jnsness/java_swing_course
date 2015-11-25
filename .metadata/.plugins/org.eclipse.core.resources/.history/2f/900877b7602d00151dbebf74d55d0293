@@ -1,7 +1,0 @@
-package Gui;
-
-import AbstractTableModel;
-
-public class PersonTableModel extends AbstractTableModel {
-
-}

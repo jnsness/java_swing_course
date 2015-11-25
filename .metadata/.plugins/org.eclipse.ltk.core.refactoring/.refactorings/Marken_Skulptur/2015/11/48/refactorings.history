@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename local variable &apos;id&apos; in &apos;DbAccess.DbSavePersonalData(...)&apos; to &apos;uuid&apos;&#x0D;&#x0A;- Original project: &apos;Marken_Skulptur&apos;&#x0D;&#x0A;- Original element: &apos;DbAccess.DbSavePersonalData(String, String, String, String, int, int).id&apos;&#x0D;&#x0A;- Renamed element: &apos;id&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;id&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;{DbAccess.java[DbAccess~DbSavePersonalData~QString;~QString;~QString;~QString;~I~I@id!363!371!370!371!QString;!0!true" name="uuid" references="true" stamp="1448394786858" version="1.0"/>
-</session>

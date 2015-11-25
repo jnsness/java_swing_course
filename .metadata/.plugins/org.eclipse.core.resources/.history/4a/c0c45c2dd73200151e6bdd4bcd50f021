@@ -1,3 +1,0 @@
-interface DragGestureListener {
-    public void dragGestureRecognized(DragGestureEvent e);
-}
