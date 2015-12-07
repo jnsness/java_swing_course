@@ -1,0 +1,30 @@
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+
+import javax.swing.JPanel;
+
+
+public class DragPanel extends JPanel {
+
+	public DragPanel() {
+		this.setToolTipText(MouseEvent event);
+	}
+	
+	@Override 
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+        g.setColor(Color.GRAY);
+        g.drawOval(5, 5, 5, 5);
+        g.drawOval(5, 5, 5, 5);
+        
+		g.drawLine(90, 90, 90, 780);
+		g.drawLine(90, 780, 780, 780);
+		g.drawLine(780, 780, 780, 90);
+		g.drawLine(780, 90, 90, 90);
+
+    }
+	
+}

@@ -1,0 +1,4 @@
+
+public class Painter extends JPanel {
+
+}

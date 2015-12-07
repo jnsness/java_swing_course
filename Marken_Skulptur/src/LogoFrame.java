@@ -1,9 +1,13 @@
+import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Robot;
+import java.awt.Stroke;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,7 +25,8 @@ import javax.swing.JLabel;
 
 public class LogoFrame extends JFrame {
 
-	private static JPanel dragPanel;
+	private TimeCounter elapsedTime;
+	private DragPanel dPanel;
 	private JPanel buttonPanel;
 	private JButton btnRedo;
 	private JButton btnSave;
@@ -29,6 +34,8 @@ public class LogoFrame extends JFrame {
 	
 	public LogoFrame(String uuid) {
 
+		
+		elapsedTime = new TimeCounter();
 		getContentPane().setLayout(new BorderLayout());
 
 		setVisible(true);
@@ -41,10 +48,10 @@ public class LogoFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		// dragPanel Configuration
-		dragPanel = new JPanel();
-		dragPanel.setLayout(null);
-		dragPanel.setPreferredSize(new Dimension(900, 0));
-		dragPanel.setBorder(BorderFactory.createEtchedBorder());
+		dPanel = new DragPanel();
+		dPanel.setLayout(null);
+		dPanel.setPreferredSize(new Dimension(900, 0));
+		dPanel.setBorder(BorderFactory.createEtchedBorder());
 
 		// buttonPanel Configuration
 
@@ -59,7 +66,6 @@ public class LogoFrame extends JFrame {
 
 
 		
-		
 		btnRedo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				loadLogos();
@@ -72,16 +78,22 @@ public class LogoFrame extends JFrame {
 
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				GetLocations();
+				new DbAccess().DbSaveTimeData(uuid, elapsedTime.setEndTime(System.currentTimeMillis()));
 				new DbAccess().DbSaveLogoData(uuid, logolist);
-				new SnapShot().getSnapShot(dragPanel, uuid);
+				new SnapShot().getSnapShot(dPanel, uuid);
+				
+
 			}
 		});
 
 		// add Panels to Frame
 
+
+		
 		getContentPane().add(buttonPanel, BorderLayout.EAST);
-		getContentPane().add(dragPanel, BorderLayout.WEST);
+		getContentPane().add(dPanel, BorderLayout.WEST);
 		
 
 
@@ -99,6 +111,7 @@ public class LogoFrame extends JFrame {
 			public void run() {
 				loadLogos();
 				
+				
 
 			}
 		});
@@ -107,8 +120,8 @@ public class LogoFrame extends JFrame {
 	/**
 	 * Generate names of files
 	 */
-	public static void loadLogos() {
-		dragPanel.removeAll();
+	public void loadLogos() {
+		dPanel.removeAll();
 
 		// Array to give every image from folder
 
@@ -126,21 +139,19 @@ public class LogoFrame extends JFrame {
 		JLabel lblYou = new JLabel("You");
 		lblYou.setBounds(425, 399, 90, 90);
 		lblYou.setIcon(icon);
-		dragPanel.add(lblYou);
-		
-		
-		dragPanel.repaint();
+		dPanel.add(lblYou);
+		dPanel.repaint();
 		
 		
 	}
 
-	public static void addNewLogo(String fileName, int i) {
+	public void addNewLogo(String fileName, int i) {
 		// Get resources from Directory or Jar file
 		Image img = Toolkit.getDefaultToolkit().createImage(fileName);
 
 		// Creates a draggableImageComponent and adds loaded image
 		DraggableLogoComponent logo = new DraggableLogoComponent(fileName);
-		dragPanel.add(logo);// Adds this component to main container
+		dPanel.add(logo);// Adds this component to main container
 		
 		logolist.add(logo);
 		
@@ -153,7 +164,7 @@ public class LogoFrame extends JFrame {
 		//randomize location of logos
 		logo.setLocation((int)(Math.random()*830), (int)(Math.random()*810));
 	
-		dragPanel.repaint();
+		dPanel.repaint();
 		
 	}
 
@@ -165,7 +176,6 @@ public class LogoFrame extends JFrame {
 		
 	}
 	
-
 	
 	
 }

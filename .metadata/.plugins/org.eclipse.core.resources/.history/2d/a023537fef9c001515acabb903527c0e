@@ -1,0 +1,24 @@
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+
+import javax.swing.JPanel;
+
+
+public class DragPanel extends JPanel {
+	
+	@Override 
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+        //write either "RED" or "BLUE" using graphics
+        g.setColor(Color.WHITE);
+        g.setFont(new Font("serif", Font.BOLD, 60));
+		g.drawLine(90, 90, 90, 780);
+		g.drawLine(90, 780, 780, 780);
+		g.drawLine(780, 780, 780, 90);
+		g.drawLine(780, 90, 90, 90);
+
+    }
+	
+}

@@ -1,0 +1,28 @@
+public class TimeCounter {
+
+	long startTime;
+	long endTime;
+
+	public TimeCounter() {
+		startTime = System.currentTimeMillis();
+		System.out.println(startTime);
+	}
+
+	public long getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(long startTime) {
+		this.startTime = startTime;
+	}
+
+	public long getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(long endTime) {
+		this.endTime = endTime;
+	}
+	
+	
+}
