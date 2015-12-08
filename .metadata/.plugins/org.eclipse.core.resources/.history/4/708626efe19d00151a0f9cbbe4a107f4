@@ -1,0 +1,70 @@
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import java.awt.BorderLayout;
+import javax.swing.JSplitPane;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.CardLayout;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import javax.swing.BoxLayout;
+
+
+public class ApplicationWindowBuilder {
+
+	private JFrame frame;
+	private JTextField txtTesrt;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					ApplicationWindowBuilder window = new ApplicationWindowBuilder();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public ApplicationWindowBuilder() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(28, 11, 135, 239);
+		frame.getContentPane().add(panel);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		panel.add(lblNewLabel);
+		
+		txtTesrt = new JTextField();
+		txtTesrt.setText("Tesrt");
+		panel.add(txtTesrt);
+		txtTesrt.setColumns(10);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(159, 11, 265, 239);
+		frame.getContentPane().add(panel_1);
+	}
+}

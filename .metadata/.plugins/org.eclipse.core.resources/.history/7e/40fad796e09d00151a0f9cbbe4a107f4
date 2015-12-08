@@ -1,0 +1,17 @@
+import java.awt.BorderLayout;
+
+import javax.swing.JFrame;
+
+
+public class ResultFrame extends JFrame {
+
+	public ResultFrame() {
+		
+		getContentPane().setLayout(new BorderLayout());
+
+		setVisible(true);
+		setSize(1200, 900);
+		setResizable(false);
+		
+	}
+}

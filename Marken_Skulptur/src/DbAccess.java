@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.Iterator;
 
 import javax.swing.JTextField;
 
@@ -180,12 +181,12 @@ public class DbAccess {
 			System.exit(0);
 		}
 
-		// SQL Query only gives data which fits to current uuid (process)
+		// SQL Query only selects data which fits to current uuid (process)
 
 		String sqlQuery = "Select UUID, brandName, xcord, ycord from logo_info where UUID ="
 				+ "'" + uuid + "';";
 
-		ArrayList<QueryObjectsForCalculation> listFromQuery = new ArrayList<QueryObjectsForCalculation>();
+		ArrayList<QueryObjectsForCalculation> loopCache = new ArrayList<QueryObjectsForCalculation>();
 
 		try {
 			stmt = c.createStatement();
@@ -202,18 +203,76 @@ public class DbAccess {
 
 				QueryObjectsForCalculation objectForList = new QueryObjectsForCalculation(
 						uuidFromQuery, brandName, x, y);
-				listFromQuery.add(objectForList);
 
+				loopCache.add(objectForList);
 
 			}
 
-			for (QueryObjectsForCalculation objectsForList : listFromQuery) {
-				
-				System.out.println(objectsForList.getBrandName());
-				
+			// Looping for buildung a whole table to cross-connect every brand
+			// with each other
+
+			for (int i = 0; i < loopCache.size(); i++) {
+				for (int j = 0; j < loopCache.size(); j++) {
+
+					// If-statement for removing same-value-pairs (e.g. Audi and
+					// Audi)
+
+					if (!loopCache.get(i).getBrandName()
+							.equals(loopCache.get(j).getBrandName())) {
+						String identifier = loopCache.get(i).getUuidFromQuery();
+						String sourceBrand = loopCache.get(i).getBrandName();
+						int sourceX = loopCache.get(i).getX();
+						int sourceY = loopCache.get(i).getY();
+						String compareBrand = loopCache.get(j).getBrandName();
+						int compareX = loopCache.get(j).getX();
+						int compareY = loopCache.get(j).getY();
+
+						// Vector-Distance-Calculation
+
+						int distanceX = sourceX - compareX;
+						int distanceY = sourceY - compareY;
+						double distanceSquareRoot = Math
+								.sqrt((distanceX * distanceX)
+										+ (distanceY * distanceY));
+
+						String sqlInsert = "INSERT INTO compare_brandDistances (UUID,sourceBrandName,sourceX,sourceY,compareBrandName,compareX,compareY,distance) VALUES ("
+								+ "'"
+								+ identifier
+								+ "'"
+								+ ","
+								+ "'"
+								+ sourceBrand
+								+ "'"
+								+ ","
+								+ "'"
+								+ sourceX
+								+ "'"
+								+ ","
+								+ "'"
+								+ sourceY
+								+ "'"
+								+ ","
+								+ "'"
+								+ compareBrand
+								+ "'"
+								+ ","
+								+ "'"
+								+ compareX
+								+ "'"
+								+ ","
+								+ "'"
+								+ compareY
+								+ "'"
+								+ ","
+								+ "'"
+								+ distanceSquareRoot + "'" + ");";
+
+						stmt.executeUpdate(sqlInsert);
+					}
+				}
+
 			}
-			
-			
+
 			c.setAutoCommit(false);
 			stmt.close();
 			c.commit();
@@ -225,4 +284,57 @@ public class DbAccess {
 
 	}
 
+
+	public double DbCalculateAVGDistance(String uuid) {
+		double avgDistance = 0;
+		
+		try {
+			Class.forName("org.sqlite.JDBC");
+			c = DriverManager.getConnection("jdbc:sqlite:test.db");
+		} 
+		catch (Exception e) {
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.exit(0);
+		}
+
+		String sqlQuery = "select AVG(distance) from compare_brandDistances where UUID ="
+				+ "'" + uuid + "';";
+		
+		try {
+			
+			stmt = c.createStatement();
+			ResultSet rs = stmt.executeQuery(sqlQuery);
+			while (rs.next()) {
+				avgDistance = rs.getDouble("AVG(distance)");
+				
+				
+				String sql = "INSERT INTO avg_distance (UUID,avg_distance) VALUES ("
+						+ "'"
+						+ uuid
+						+ "'"
+						+ ","
+						+ "'"
+						+avgDistance +"'" + ");";
+
+				stmt.executeUpdate(sql);
+				
+				c.setAutoCommit(false);
+				stmt.close();
+				c.commit();
+				c.close();
+			}
+		}
+		
+	
+			
+		catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		return avgDistance;
+	}
+	
+	
+	
 }
+	

@@ -56,12 +56,13 @@ public class LogoFrame extends JFrame {
 		// buttonPanel Configuration
 
 		buttonPanel = new JPanel();
-		buttonPanel.setLayout(new FlowLayout());
 		buttonPanel.setPreferredSize(new Dimension(290, 0));
 		buttonPanel.setBorder(BorderFactory.createEtchedBorder());
+		buttonPanel.setLayout(null);
 
 		btnRedo = new JButton();
-		btnRedo.setText("Redo");
+		btnRedo.setBounds(39, 819, 75, 41);
+		btnRedo.setText("Shuffle");
 		buttonPanel.add(btnRedo);
 
 
@@ -73,18 +74,24 @@ public class LogoFrame extends JFrame {
 		});
 
 		btnSave = new JButton();
-		btnSave.setText("Save");
+		btnSave.setBounds(124, 818, 129, 42);
+		btnSave.setText("Save and Next");
 		buttonPanel.add(btnSave);
 
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				setVisible(false);
+				
 				
 				GetLocations();
 				new DbAccess().DbSaveTimeData(uuid, elapsedTime.setEndTime(System.currentTimeMillis()));
 				new DbAccess().DbSaveLogoData(uuid, logolist);
 				new SnapShot().getSnapShot(dPanel, uuid);
 				new DbAccess().DbCalculateDistances(uuid);
-
+				
+				new ResultFrame(uuid);
+				
 			}
 		});
 
