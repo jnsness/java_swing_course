@@ -83,7 +83,7 @@ public class LogoFrame extends JFrame {
 				new DbAccess().DbSaveTimeData(uuid, elapsedTime.setEndTime(System.currentTimeMillis()));
 				new DbAccess().DbSaveLogoData(uuid, logolist);
 				new SnapShot().getSnapShot(dPanel, uuid);
-				
+				new DbAccess().DbCalculateDistances(uuid);
 
 			}
 		});

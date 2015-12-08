@@ -1,0 +1,18 @@
+
+public class QueryObjectsForCalculation {
+	
+	
+	private String uuidFromQuery;
+	private String brandName;
+	private int x;
+	private int y;
+
+	public QueryObjectsForCalculation(String uuidFromQuery, String brandName, int x, int y) {
+		this.uuidFromQuery = uuidFromQuery;
+		this.brandName = brandName;
+		this.x = x;
+		this.y = y;
+		
+	}
+	
+}
