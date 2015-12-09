@@ -1,32 +1,24 @@
-import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
-import java.awt.Robot;
-import java.awt.Stroke;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
 
-import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class LogoFrame extends JFrame {
 
 	private TimeCounter elapsedTime;
-	private DragPanel dPanel;
+	private LogoFrameView dPanel;
 	private JPanel buttonPanel;
 	private JButton btnRedo;
 	private JButton btnSave;
@@ -34,7 +26,6 @@ public class LogoFrame extends JFrame {
 	
 	public LogoFrame(String uuid) {
 
-		
 		elapsedTime = new TimeCounter();
 		getContentPane().setLayout(new BorderLayout());
 
@@ -48,7 +39,7 @@ public class LogoFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		// dragPanel Configuration
-		dPanel = new DragPanel();
+		dPanel = new LogoFrameView();
 		dPanel.setLayout(null);
 		dPanel.setPreferredSize(new Dimension(900, 0));
 		dPanel.setBorder(BorderFactory.createEtchedBorder());
@@ -69,7 +60,9 @@ public class LogoFrame extends JFrame {
 		
 		btnRedo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				logolist.clear();
 				loadLogos();
+				
 			}
 		});
 
@@ -89,7 +82,6 @@ public class LogoFrame extends JFrame {
 				new DbAccess().DbSaveLogoData(uuid, logolist);
 				new SnapShot().getSnapShot(dPanel, uuid);
 				new DbAccess().DbCalculateDistances(uuid);
-				
 				new ResultFrame(uuid);
 				
 			}
@@ -117,8 +109,6 @@ public class LogoFrame extends JFrame {
 
 			public void run() {
 				loadLogos();
-				
-				
 
 			}
 		});

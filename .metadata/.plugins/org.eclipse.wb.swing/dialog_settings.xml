@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+	<section name="org.eclipse.wb.internal.swing.model.layout.gbl.ui.RowEditDialog">
+		<item value="790" key="x"/>
+		<item value="340" key="width"/>
+		<item value="305" key="y"/>
+		<item value="430" key="height"/>
+	</section>
 	<section name="org.eclipse.wb.internal.swing.model.property.editor.border.BorderDialog">
 		<item value="719" key="x"/>
 		<item value="482" key="width"/>

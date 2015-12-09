@@ -1,0 +1,89 @@
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Point;
+
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
+import java.awt.Insets;
+import javax.swing.JTextPane;
+import javax.swing.JSeparator;
+import javax.swing.JLayeredPane;
+
+public class FormularWindow {
+
+	public static Point frameLocation;
+
+	private JFrame frame;
+
+	public FormularWindow() {
+
+		FormularWindowView view = new FormularWindowView();
+
+		view.btnWeiter.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+
+				// Set Location for new window to appear at the same point
+//				frameLocation = frame.getLocation();
+
+				// old screen disappears
+//				frame.setVisible(false);
+
+				// new LogoFrame will be instantiated. Data should be loaded
+				// when "next" is clicked. Not before that moment
+				new GenerateUUID();
+
+				new DbAccess().DbSavePersonalData(GenerateUUID.id.toString(),
+						view.txtName.getText(), view.txtNachname.getText(),
+						view.txtBeruf.getText(), (Integer) view.getAgeSpinner()
+								.getValue(), view.sexComboBox
+								.getSelectedIndex());
+				
+				System.out.println(view.txtName.getText());
+				
+				new LogoFrame((String) view.getCatComboBox().getSelectedItem(),
+						GenerateUUID.id.toString());
+			}
+
+		});
+	}
+
+	// public static String getImageCategory() {
+	// String valueCatComboBox = (String) catComboBox.getSelectedItem();
+	// return valueCatComboBox;
+	// }
+	//
+	// public static JTextField getTxtName() {
+	// return txtName;
+	// }
+	//
+	// public static JTextField getTxtNachname() {
+	// return txtNachname;
+	// }
+	//
+	// public static JTextField getTxtBeruf() {
+	// return txtBeruf;
+	// }
+	//
+	// public static JSpinner getAgeSpinner() {
+	// return ageSpinner;
+	// }
+	//
+	// public static JComboBox getSexComboBox() {
+	// return sexComboBox;
+	// }
+	//
+
+}
