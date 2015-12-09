@@ -23,6 +23,8 @@ public class LogoFrame extends JFrame {
 	private JButton btnRedo;
 	private JButton btnSave;
 	public static ArrayList<DraggableLogoComponent> logolist = new ArrayList<DraggableLogoComponent>();
+	public static JLabel lblYou;
+	
 	
 	public LogoFrame(String uuid) {
 
@@ -56,13 +58,11 @@ public class LogoFrame extends JFrame {
 		btnRedo.setText("Shuffle");
 		buttonPanel.add(btnRedo);
 
-
-		
 		btnRedo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				logolist.clear();
 				loadLogos();
-				
+
 			}
 		});
 
@@ -73,28 +73,24 @@ public class LogoFrame extends JFrame {
 
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				setVisible(false);
-				
-				
+
 				GetLocations();
-				new DbAccess().DbSaveTimeData(uuid, elapsedTime.setEndTime(System.currentTimeMillis()));
-				new DbAccess().DbSaveLogoData(uuid, logolist);
 				new SnapShot().getSnapShot(dPanel, uuid);
+				new DbAccess().DbSaveTimeData(uuid,
+						elapsedTime.setEndTime(System.currentTimeMillis()));
+				new DbAccess().DbSaveLogoData(uuid, logolist);
 				new DbAccess().DbCalculateDistances(uuid);
 				new ResultFrame(uuid);
-				
+				new DbAccess().DbCalculateAVGDistanceFromYou(uuid);
 			}
 		});
 
 		// add Panels to Frame
 
-
-		
 		getContentPane().add(buttonPanel, BorderLayout.EAST);
 		getContentPane().add(dPanel, BorderLayout.WEST);
-		
-
 
 		/*
 		 * Is good create a Thread to manipulate Forms and Files. In this
@@ -102,9 +98,7 @@ public class LogoFrame extends JFrame {
 		 * graphics operations needs to be elaborated after pending events are
 		 * processed
 		 */
-		
-		
-		
+
 		java.awt.EventQueue.invokeLater(new Runnable() {
 
 			public void run() {
@@ -130,16 +124,15 @@ public class LogoFrame extends JFrame {
 			String fileName = String.valueOf(fa[i]);
 			addNewLogo(fileName, i);
 		}
-		
-		//Load "youLogo" | Personal image
+
+		// Load "youLogo" | Personal image
 		ImageIcon icon = new ImageIcon("images/you_point.png");
-		JLabel lblYou = new JLabel("You");
+		lblYou = new JLabel("You");
 		lblYou.setBounds(425, 399, 90, 90);
 		lblYou.setIcon(icon);
 		dPanel.add(lblYou);
 		dPanel.repaint();
-		
-		
+
 	}
 
 	public void addNewLogo(String fileName, int i) {
@@ -149,30 +142,39 @@ public class LogoFrame extends JFrame {
 		// Creates a draggableImageComponent and adds loaded image
 		DraggableLogoComponent logo = new DraggableLogoComponent(fileName);
 		dPanel.add(logo);// Adds this component to main container
-		
+
 		logolist.add(logo);
-		
+
 		logo.setImage(img);// Sets image
 		logo.setAutoSize(true);// The component get ratio w/h of source image
 		logo.setOverbearing(true);// On click ,this panel gains lowest z-buffer
 
 		logo.setSize(75, 75);
-		
-		//randomize location of logos
-		logo.setLocation((int)(Math.random()*830), (int)(Math.random()*810));
-	
+
+		// randomize location of logos
+		logo.setLocation((int) (Math.random() * 830),
+				(int) (Math.random() * 810));
+
 		dPanel.repaint();
-		
+
 	}
 
 	public static void GetLocations() {
-		for(DraggableLogoComponent i : logolist){
+		for (DraggableLogoComponent i : logolist) {
 			Point location = i.getLocation();
 			String name = i.getFileName();
 		}
-		
+
 	}
-	
+
+	public static JLabel getLblYou() {
+		return lblYou;
+	}
+
+	public void setLblYou(JLabel lblYou) {
+		this.lblYou = lblYou;
+	}
+
 	
 	
 }

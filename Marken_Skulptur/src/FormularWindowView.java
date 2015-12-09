@@ -58,6 +58,7 @@ public class FormularWindowView {
 		txtName.setColumns(10);
 
 		txtpnWillkommenImMarkenbewertungstool = new JTextPane();
+		txtpnWillkommenImMarkenbewertungstool.setEditable(false);
 		txtpnWillkommenImMarkenbewertungstool
 				.setText("Willkommen im Markenbewertungs-Tool der Hochschule Mainz!\r\n\r\nBitte tragen Sie hier Ihre pers\u00F6nlichen Daten ein. \r\n\r\nJe nach Kategorie werden Sie auf dem n\u00E4chsten Bildschirm verschiedene Logos sehen.\r\n\r\nSoweit Sie soweit sind - dr\u00FCcken Sie auf \"next\"");
 		GridBagConstraints gbc_txtpnWillkommenImMarkenbewertungstool = new GridBagConstraints();

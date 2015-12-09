@@ -9,7 +9,7 @@ public class ResultFrame extends JFrame {
 
 	public ResultFrame(String uuid) {
 
-		ResultFrameView view = new ResultFrameView();
+		ResultFrameView view = new ResultFrameView(uuid);
 		
 		// Format Double Average Distance into better format and put it in
 		// textField

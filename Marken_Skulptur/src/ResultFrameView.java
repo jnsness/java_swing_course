@@ -1,20 +1,27 @@
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Insets;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.net.URL;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
 public class ResultFrameView extends JFrame {
 	private JTextField textField;
-	private JTable table;
 	private JTextField textField_1;
+	private JTable table;
 
-	public ResultFrameView() {
+	public ResultFrameView(String uuid) {
 
 		setVisible(true);
 		setSize(1200, 900);
@@ -29,6 +36,8 @@ public class ResultFrameView extends JFrame {
 				TitledBorder.TOP, null, null));
 		getContentPane().add(panel);
 		GridBagLayout gbl_panel = new GridBagLayout();
+		gbl_panel.rowWeights = new double[]{0.0, 0.0, 1.0, 0.0, 0.0};
+		gbl_panel.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, 0.0};
 		gbl_panel.columnWidths = new int[] { 0, 116, 70, 70, 70 };
 		gbl_panel.rowHeights = new int[] { 20, 20, 20, 20, 20 };
 		panel.setLayout(gbl_panel);
@@ -41,15 +50,24 @@ public class ResultFrameView extends JFrame {
 		gbc_lblNewLabel.gridy = 0;
 		panel.add(lblNewLabel, gbc_lblNewLabel);
 
+		
+
+//		Set board to the right panel of resultFrame
+		
 		JPanel panelRight = new JPanel();
 		panelRight.setBounds(432, 0, 732, 641);
 		panelRight.setBorder(new TitledBorder(null, "Image",
 				TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		getContentPane().add(panelRight);
+		
+		ImageIcon icon = new ImageIcon(new ImageIcon("snapshots/"+uuid+".jpg").getImage().getScaledInstance(600, 580, Image.SCALE_DEFAULT));
+		JLabel label = new JLabel(icon, JLabel.CENTER);
+		panelRight.add(label);
+		
 
-		textField = new JTextField("");
+		textField = new JTextField();
 		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.anchor = GridBagConstraints.NORTH;
+		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField.insets = new Insets(0, 0, 5, 0);
 		gbc_textField.gridx = 4;
 		gbc_textField.gridy = 0;
@@ -72,15 +90,18 @@ public class ResultFrameView extends JFrame {
 		gbc_textField_1.gridy = 1;
 		panel.add(textField_1, gbc_textField_1);
 		textField_1.setColumns(10);
-
+		
+		JScrollPane scrollPane = new JScrollPane();
+		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+		gbc_scrollPane.gridwidth = 4;
+		gbc_scrollPane.insets = new Insets(0, 0, 5, 5);
+		gbc_scrollPane.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane.gridx = 1;
+		gbc_scrollPane.gridy = 2;
+		panel.add(scrollPane, gbc_scrollPane);
+		
 		table = new JTable();
-		GridBagConstraints gbc_table = new GridBagConstraints();
-		gbc_table.gridwidth = 5;
-		gbc_table.insets = new Insets(0, 0, 5, 0);
-		gbc_table.fill = GridBagConstraints.BOTH;
-		gbc_table.gridx = 0;
-		gbc_table.gridy = 2;
-		panel.add(table, gbc_table);
+		scrollPane.setViewportView(table);
 	}
 
 }

@@ -6,3 +6,6 @@
 1449603597769	Rename local variable 'panel_1'
 1449603606157	Rename local variable 'PanelRight'
 1449672303791	Rename type 'DragPanel'
+1449673640542	Rename local variable 'avgDistance'
+1449674794140	Rename local variable 'avgDistanceAs'
+1449677347330	Delete element

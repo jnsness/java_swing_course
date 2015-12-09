@@ -99,7 +99,16 @@ public class DbAccess {
 
 				String[] regexArrayLogoname = logonameCleaned.split("\\+|\\.");
 
-				String sql = "INSERT INTO logo_info (UUID,logo_name,category,brandName,xcord,ycord,innerFrame) VALUES ("
+				// Calculate Distance to you
+				int youX = LogoFrame.getLblYou().getX();
+				int youY = LogoFrame.getLblYou().getY();
+
+				int distanceX = youX - x;
+				int distanceY = youY - y;
+				int distanceSquareRoot = (int) Math
+						.sqrt((distanceX * distanceX) + (distanceY * distanceY));
+
+				String sql = "INSERT INTO logo_info (UUID,logo_name,category,brandName,xcord,ycord,innerFrame,distance_from_you) VALUES ("
 						+ "'"
 						+ uuid
 						+ "'"
@@ -120,7 +129,7 @@ public class DbAccess {
 						+ ","
 						+ y
 						+ ","
-						+ innerFrame + ");";
+						+ innerFrame + "," + distanceSquareRoot + ");";
 				stmt.executeUpdate(sql);
 			}
 
@@ -231,7 +240,7 @@ public class DbAccess {
 
 						int distanceX = sourceX - compareX;
 						int distanceY = sourceY - compareY;
-						double distanceSquareRoot = Math
+						int distanceSquareRoot = (int) Math
 								.sqrt((distanceX * distanceX)
 										+ (distanceY * distanceY));
 
@@ -284,57 +293,91 @@ public class DbAccess {
 
 	}
 
-
 	public double DbCalculateAVGDistance(String uuid) {
-		double avgDistance = 0;
-		
+		double avgDistanceAs = 0;
+
 		try {
 			Class.forName("org.sqlite.JDBC");
 			c = DriverManager.getConnection("jdbc:sqlite:test.db");
-		} 
-		catch (Exception e) {
+		} catch (Exception e) {
 			System.err.println(e.getClass().getName() + ": " + e.getMessage());
 			System.exit(0);
 		}
 
 		String sqlQuery = "select AVG(distance) from compare_brandDistances where UUID ="
 				+ "'" + uuid + "';";
-		
+
 		try {
-			
+
 			stmt = c.createStatement();
 			ResultSet rs = stmt.executeQuery(sqlQuery);
 			while (rs.next()) {
-				avgDistance = rs.getDouble("AVG(distance)");
-				
-				
-				String sql = "INSERT INTO avg_distance (UUID,avg_distance) VALUES ("
+				avgDistanceAs = rs.getDouble("AVG(distance)");
+				String sql = "INSERT INTO avg_distance (UUID,avg_distance_as) VALUES ("
 						+ "'"
 						+ uuid
 						+ "'"
 						+ ","
 						+ "'"
-						+avgDistance +"'" + ");";
+						+ avgDistanceAs
+						+ "'"
+						+ ");";
 
 				stmt.executeUpdate(sql);
-				
+
 				c.setAutoCommit(false);
 				stmt.close();
 				c.commit();
 				c.close();
 			}
 		}
-		
-	
-			
+
 		catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		return avgDistance;
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return avgDistanceAs;
 	}
-	
-	
-	
+
+	public double DbCalculateAVGDistanceFromYou(String uuid) {
+		double avgDistanceFromYou = 0;
+
+		try {
+			Class.forName("org.sqlite.JDBC");
+			c = DriverManager.getConnection("jdbc:sqlite:test.db");
+		} catch (Exception e) {
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.exit(0);
+		}
+
+		String sqlQuery = "select AVG(distance_from_you) from logo_info where UUID ="
+				+ "'" + uuid + "';";
+
+		
+		try {
+
+			stmt = c.createStatement();
+			ResultSet rs = stmt.executeQuery(sqlQuery);
+			while (rs.next()) {
+				avgDistanceFromYou = rs.getDouble("AVG(distance_from_you)");
+				String sql = "Update avg_distance SET avg_distance_to_you ="
+						+ "'" + avgDistanceFromYou + "'" + "where UUID =" + "'"
+						+ uuid + "';";
+				
+				stmt.execute(sql);
+
+				c.setAutoCommit(false);
+				stmt.close();
+				c.commit();
+				c.close();
+			}
+		}
+
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return avgDistanceFromYou;
+	}
+
 }
-	

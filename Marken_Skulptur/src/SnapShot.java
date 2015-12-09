@@ -10,7 +10,7 @@ public class SnapShot {
 	public SnapShot() {
 	}
 
-	void getSnapShot(JPanel panel, String uuid) {
+	int getSnapShot(JPanel panel, String uuid) {
 		BufferedImage bufImg = new BufferedImage(panel.getSize().width, panel.getSize().height, BufferedImage.TYPE_INT_RGB);
 		panel.paint(bufImg.createGraphics());
 		File imageFile = new File("snapshots/"+uuid+".jpg");
@@ -22,6 +22,7 @@ public class SnapShot {
 		{
 			
 		}
+		return 1;
 	}
-
+	
 }
