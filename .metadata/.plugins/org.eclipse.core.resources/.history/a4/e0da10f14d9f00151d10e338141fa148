@@ -24,8 +24,8 @@ public class LogoFrame extends JFrame {
 	private JButton btnSave;
 	public static ArrayList<DraggableLogoComponent> logolist = new ArrayList<DraggableLogoComponent>();
 	public static JLabel lblYou;
-	public static DraggableLogoComponent YouLogo;
-
+	
+	
 	public LogoFrame(String uuid) {
 
 		elapsedTime = new TimeCounter();
@@ -62,7 +62,7 @@ public class LogoFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				logolist.clear();
 				loadLogos();
-				loadYouImage();
+
 			}
 		});
 
@@ -103,7 +103,7 @@ public class LogoFrame extends JFrame {
 
 			public void run() {
 				loadLogos();
-				loadYouImage();
+
 			}
 		});
 	}
@@ -122,8 +122,32 @@ public class LogoFrame extends JFrame {
 
 		for (int i = 0; i <= 10; i++) {
 			String fileName = String.valueOf(fa[i]);
-			addNewLogo(fileName);
+			addNewLogo(fileName, i);
 		}
+
+		// Load "youLogo" | Personal image
+		
+		String urlYouLogo = "images/you_point.png";
+		Image youImg = Toolkit.getDefaultToolkit().createImage(urlYouLogo);
+		DraggableLogoComponent youLogo = new DraggableLogoComponent(urlYouLogo);
+		dPanel.add(youLogo);
+		
+		youLogo.setImage(youImg);
+		youLogo.setAutoSize(true);
+		
+		youLogo.setLocation((int) (Math.random() * 830),
+				(int) (Math.random() * 810));
+		
+		
+		
+		dPanel.repaint();
+		
+		ImageIcon icon = new ImageIcon("images/you_point.png");
+		lblYou = new JLabel("You");
+		lblYou.setBounds(425, 399, 90, 90);
+		lblYou.setIcon(icon);
+		dPanel.add(lblYou);
+		dPanel.repaint();
 
 	}
 
@@ -148,12 +172,6 @@ public class LogoFrame extends JFrame {
 				(int) (Math.random() * 810));
 
 		dPanel.repaint();
-		
-		if (fileName.equals("images/you_point.png")) {
-			YouLogo = logo;
-			logo.setSize(125, 125);
-			System.out.println("Einmal ausgeführt" + logo);
-		}
 
 	}
 
@@ -165,22 +183,14 @@ public class LogoFrame extends JFrame {
 
 	}
 
-
-	public void loadYouImage() {
-		// Load "youLogo" | Personal image
-
-		String urlYouLogo = "images/you_point.png";
-		addNewLogo(urlYouLogo);
-
-		// First added to logoList to benefit from Method "addnewLogo" functions
-		// - then deleted it to not get written to DB with the arraylist
-		logolist.remove(logolist.size() - 1);
-
+	public static JLabel getLblYou() {
+		return lblYou;
 	}
 
-	public static DraggableLogoComponent getYouLogo() {
-		return YouLogo;
+	public void setLblYou(JLabel lblYou) {
+		this.lblYou = lblYou;
 	}
+
 	
-
+	
 }

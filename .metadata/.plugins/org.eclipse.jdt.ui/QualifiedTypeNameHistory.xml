@@ -26,7 +26,6 @@
 <fullyQualifiedTypeName name="java.lang.Integer"/>
 <fullyQualifiedTypeName name="FormularWindowView"/>
 <fullyQualifiedTypeName name="ResultFrameView"/>
-<fullyQualifiedTypeName name="LogoFrame"/>
 <fullyQualifiedTypeName name="DbAccess"/>
 <fullyQualifiedTypeName name="java.lang.Thread"/>
 <fullyQualifiedTypeName name="CreateImageIconHelper"/>
@@ -39,4 +38,6 @@
 <fullyQualifiedTypeName name="java.io.File"/>
 <fullyQualifiedTypeName name="java.io.IOException"/>
 <fullyQualifiedTypeName name="java.net.URL"/>
+<fullyQualifiedTypeName name="DraggableLogoComponent"/>
+<fullyQualifiedTypeName name="LogoFrame"/>
 </qualifiedTypeNameHistroy>

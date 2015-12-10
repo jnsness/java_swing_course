@@ -24,7 +24,6 @@ public class LogoFrame extends JFrame {
 	private JButton btnSave;
 	public static ArrayList<DraggableLogoComponent> logolist = new ArrayList<DraggableLogoComponent>();
 	public static JLabel lblYou;
-	public static DraggableLogoComponent YouLogo;
 
 	public LogoFrame(String uuid) {
 
@@ -148,12 +147,6 @@ public class LogoFrame extends JFrame {
 				(int) (Math.random() * 810));
 
 		dPanel.repaint();
-		
-		if (fileName.equals("images/you_point.png")) {
-			YouLogo = logo;
-			logo.setSize(125, 125);
-			System.out.println("Einmal ausgeführt" + logo);
-		}
 
 	}
 
@@ -165,6 +158,13 @@ public class LogoFrame extends JFrame {
 
 	}
 
+	public static JLabel getLblYou() {
+		return lblYou;
+	}
+
+	public void setLblYou(JLabel lblYou) {
+		this.lblYou = lblYou;
+	}
 
 	public void loadYouImage() {
 		// Load "youLogo" | Personal image
@@ -177,10 +177,5 @@ public class LogoFrame extends JFrame {
 		logolist.remove(logolist.size() - 1);
 
 	}
-
-	public static DraggableLogoComponent getYouLogo() {
-		return YouLogo;
-	}
-	
 
 }

@@ -150,7 +150,7 @@ public class LogoFrame extends JFrame {
 		dPanel.repaint();
 		
 		if (fileName.equals("images/you_point.png")) {
-			YouLogo = logo;
+			DraggableLogoComponent YouLogo = logo;
 			logo.setSize(125, 125);
 			System.out.println("Einmal ausgeführt" + logo);
 		}

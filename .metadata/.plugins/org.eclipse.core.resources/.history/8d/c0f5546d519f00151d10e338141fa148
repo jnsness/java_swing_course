@@ -101,7 +101,6 @@ public class DbAccess {
 
 				// Calculate Distance to you
 				
-				System.out.println(LogoFrame.getYouLogo().getX());
 				int youX = LogoFrame.getYouLogo().getX();
 				int youY = LogoFrame.getYouLogo().getY();
 

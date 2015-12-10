@@ -100,10 +100,8 @@ public class DbAccess {
 				String[] regexArrayLogoname = logonameCleaned.split("\\+|\\.");
 
 				// Calculate Distance to you
-				
-				System.out.println(LogoFrame.getYouLogo().getX());
-				int youX = LogoFrame.getYouLogo().getX();
-				int youY = LogoFrame.getYouLogo().getY();
+				int youX = LogoFrame.getLblYou().getX();
+				int youY = LogoFrame.getLblYou().getY();
 
 				int distanceX = youX - x;
 				int distanceY = youY - y;
