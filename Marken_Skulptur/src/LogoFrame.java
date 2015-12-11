@@ -22,12 +22,12 @@ public class LogoFrame extends JFrame {
 	private JPanel buttonPanel;
 	private JButton btnRedo;
 	private JButton btnSave;
-	public static ArrayList<DraggableLogoComponent> logolist = new ArrayList<DraggableLogoComponent>();
-	public static JLabel lblYou;
+	public ArrayList<DraggableLogoComponent> logolist;
 	public static DraggableLogoComponent YouLogo;
 
 	public LogoFrame(String uuid) {
 
+		logolist = new ArrayList<DraggableLogoComponent>();
 		elapsedTime = new TimeCounter();
 		getContentPane().setLayout(new BorderLayout());
 
@@ -76,13 +76,24 @@ public class LogoFrame extends JFrame {
 
 				setVisible(false);
 
-				GetLocations();
-				new SnapShot().getSnapShot(dPanel, uuid);
 				new DbAccess().DbSaveTimeData(uuid,
 						elapsedTime.setEndTime(System.currentTimeMillis()));
 				new DbAccess().DbSaveLogoData(uuid, logolist);
 				new DbAccess().DbCalculateDistances(uuid);
+				
+				
+
+				Point gravityPoint = new DbAccess()
+						.DbCalculateCentreOfGravity(uuid);
+
+				dPanel.setPaintControl(1);
+				dPanel.setLogolist(logolist);
+				dPanel.setGravityPoint(gravityPoint);
+
+				new SnapShot().getSnapShot(dPanel, uuid);
 				new ResultFrame(uuid);
+
+				
 				new DbAccess().DbCalculateAVGDistanceFromYou(uuid);
 			}
 		});
@@ -120,7 +131,7 @@ public class LogoFrame extends JFrame {
 		File f = new File(imageUrl);
 		File[] fa = f.listFiles();
 
-		for (int i = 0; i <= 10; i++) {
+		for (int i = 0; i <= 9; i++) {
 			String fileName = String.valueOf(fa[i]);
 			addNewLogo(fileName);
 		}
@@ -148,23 +159,13 @@ public class LogoFrame extends JFrame {
 				(int) (Math.random() * 810));
 
 		dPanel.repaint();
-		
+
 		if (fileName.equals("images/you_point.png")) {
 			YouLogo = logo;
 			logo.setSize(125, 125);
-			System.out.println("Einmal ausgeführt" + logo);
 		}
 
 	}
-
-	public static void GetLocations() {
-		for (DraggableLogoComponent i : logolist) {
-			Point location = i.getLocation();
-			String name = i.getFileName();
-		}
-
-	}
-
 
 	public void loadYouImage() {
 		// Load "youLogo" | Personal image
@@ -181,6 +182,5 @@ public class LogoFrame extends JFrame {
 	public static DraggableLogoComponent getYouLogo() {
 		return YouLogo;
 	}
-	
 
 }

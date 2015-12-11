@@ -1,4 +1,5 @@
 import java.awt.List;
+import java.awt.Point;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -100,8 +101,7 @@ public class DbAccess {
 				String[] regexArrayLogoname = logonameCleaned.split("\\+|\\.");
 
 				// Calculate Distance to you
-				
-				System.out.println(LogoFrame.getYouLogo().getX());
+
 				int youX = LogoFrame.getYouLogo().getX();
 				int youY = LogoFrame.getYouLogo().getY();
 
@@ -341,8 +341,8 @@ public class DbAccess {
 		return avgDistanceAs;
 	}
 
-	public double DbCalculateAVGDistanceFromYou(String uuid) {
-		double avgDistanceFromYou = 0;
+	public void DbCalculateAVGDistanceFromYou(String uuid) {
+		double avgDistanceFromYou;
 
 		try {
 			Class.forName("org.sqlite.JDBC");
@@ -355,17 +355,17 @@ public class DbAccess {
 		String sqlQuery = "select AVG(distance_from_you) from logo_info where UUID ="
 				+ "'" + uuid + "';";
 
-		
 		try {
 
 			stmt = c.createStatement();
 			ResultSet rs = stmt.executeQuery(sqlQuery);
 			while (rs.next()) {
 				avgDistanceFromYou = rs.getDouble("AVG(distance_from_you)");
-				String sql = "Update avg_distance SET avg_distance_to_you ="
-						+ "'" + avgDistanceFromYou + "'" + "where UUID =" + "'"
+				String sql = "Update avg_distance SET avg_distance_to_you ="+ avgDistanceFromYou+" where UUID =" + "'"
 						+ uuid + "';";
 				
+				System.out.println(sql);
+
 				stmt.execute(sql);
 
 				c.setAutoCommit(false);
@@ -379,7 +379,62 @@ public class DbAccess {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return avgDistanceFromYou;
+	}
+
+	public Point DbCalculateCentreOfGravity(String uuid) {
+		Point gravityPoint = new Point();
+		try {
+			Class.forName("org.sqlite.JDBC");
+			c = DriverManager.getConnection("jdbc:sqlite:test.db");
+		} catch (Exception e) {
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.exit(0);
+		}
+
+//		 find GravityPoint with Sum / Amount ("arithmetisches Mittel") in coordinates. "You" button is not in list and has to be counted in manually (+1)
+		int youX = LogoFrame.YouLogo.getX();
+		int youY = LogoFrame.YouLogo.getY();
+		String sqlQuery = "select ((sum(xcord)+"+youX+")/(count(xcord))+1) as gravityPointX, ((sum(ycord)+"+youY+")/count((ycord))+1) as gravityPointY from logo_info where UUID ="
+				+ "'" + uuid + "';";
+
+		try {
+
+			stmt = c.createStatement();
+			ResultSet rs = stmt.executeQuery(sqlQuery);
+			while (rs.next()) {
+				gravityPoint.setLocation(rs.getInt("gravityPointX"),
+						rs.getInt("gravityPointY"));
+				int x = (int) gravityPoint.getX();
+				int y = (int) gravityPoint.getY();
+
+				String sql = "INSERT INTO gravityPoint (UUID,gravityPointX,gravityPointY) VALUES ("
+						+ "'"
+						+ uuid
+						+ "'"
+						+ ","
+						+ "'"
+						+ x
+						+ "'"
+						+ ","
+						+ "'"
+						+ y + "'" + ");";
+
+				stmt.execute(sql);
+
+				c.setAutoCommit(false);
+				stmt.close();
+				c.commit();
+				c.close();
+			}
+		}
+
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return gravityPoint;
+
 	}
 
 }

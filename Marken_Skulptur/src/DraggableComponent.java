@@ -10,20 +10,12 @@ import javax.swing.JComponent;
 
 public class DraggableComponent extends JComponent {
 
-	/** If sets <b>TRUE</b> this component is draggable */
 	private boolean draggable = true;
-	/**
-	 * 2D Point representing the coordinate where mouse is, relative parent
-	 * container
-	 */
 	protected Point anchorPoint;
-	/** Default mouse cursor for dragging action */
+
 	protected Cursor draggingCursor = Cursor
 			.getPredefinedCursor(Cursor.HAND_CURSOR);
-	/**
-	 * If sets <b>TRUE</b> when dragging component, it will be painted over each
-	 * other (z-Buffer change)
-	 */
+
 	protected boolean overbearing = false;
 
 	public DraggableComponent() {
@@ -32,14 +24,6 @@ public class DraggableComponent extends JComponent {
 		setBackground(new Color(240, 240, 240));
 	}
 
-	/**
-	 * We have to define this method because a JComponent is a void box. So we
-	 * have to define how it will be painted. We create a simple filled
-	 * rectangle.
-	 *
-	 * @param g
-	 *            Graphics object as canvas
-	 */
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -49,14 +33,8 @@ public class DraggableComponent extends JComponent {
 		}
 	}
 
-	/**
-	 * Add Mouse Motion Listener with drag function
-	 */
 	private void addDragListeners() {
-		/**
-		 * This handle is a reference to THIS beacause in next Mouse Adapter
-		 * "this" is not allowed
-		 */
+
 		final DraggableComponent handle = this;
 		addMouseMotionListener(new MouseAdapter() {
 
@@ -86,9 +64,6 @@ public class DraggableComponent extends JComponent {
 		});
 	}
 
-	/**
-	 * Remove all Mouse Motion Listener. Freeze component.
-	 */
 	private void removeDragListeners() {
 		for (MouseMotionListener listener : this.getMouseMotionListeners()) {
 			removeMouseMotionListener(listener);
@@ -96,21 +71,10 @@ public class DraggableComponent extends JComponent {
 		setCursor(Cursor.getDefaultCursor());
 	}
 
-	/**
-	 * Get the value of draggable
-	 *
-	 * @return the value of draggable
-	 */
 	public boolean isDraggable() {
 		return draggable;
 	}
 
-	/**
-	 * Set the value of draggable
-	 *
-	 * @param draggable
-	 *            new value of draggable
-	 */
 	public void setDraggable(boolean draggable) {
 		this.draggable = draggable;
 		if (draggable) {
@@ -121,41 +85,18 @@ public class DraggableComponent extends JComponent {
 
 	}
 
-	/**
-	 * Get the value of draggingCursor
-	 *
-	 * @return the value of draggingCursor
-	 */
 	public Cursor getDraggingCursor() {
 		return draggingCursor;
 	}
 
-	/**
-	 * Set the value of draggingCursor
-	 *
-	 *
-	 * @param draggingCursor
-	 *            new value of draggingCursor
-	 */
 	public void setDraggingCursor(Cursor draggingCursor) {
 		this.draggingCursor = draggingCursor;
 	}
 
-	/**
-	 * Get the value of overbearing
-	 *
-	 * @return the value of overbearing
-	 */
 	public boolean isOverbearing() {
 		return overbearing;
 	}
 
-	/**
-	 * Set the value of overbearing
-	 *
-	 * @param overbearing
-	 *            new value of overbearing
-	 */
 	public void setOverbearing(boolean overbearing) {
 		this.overbearing = overbearing;
 	}
