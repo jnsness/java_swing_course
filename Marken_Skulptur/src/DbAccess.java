@@ -14,8 +14,9 @@ import javax.swing.JTextField;
 
 public class DbAccess {
 
-	public Connection c = null;
-	public Statement stmt = null;
+	private Connection c = null;
+	private Statement stmt = null;
+
 
 	public DbAccess() {
 	}
@@ -342,7 +343,7 @@ public class DbAccess {
 	}
 
 	public void DbCalculateAVGDistanceFromYou(String uuid) {
-		double avgDistanceFromYou;
+		double avgDistanceFromYou = 0;
 
 		try {
 			Class.forName("org.sqlite.JDBC");
@@ -378,6 +379,7 @@ public class DbAccess {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 	}
 
 	public Point DbCalculateCentreOfGravity(String uuid) {

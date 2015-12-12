@@ -1,0 +1,42 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+public class DbQueryBuilder {
+
+	public DbQueryBuilder() {
+	}
+
+	public void getavgDistanceAs(String uuid) {
+		Connection connection = null;
+		Statement selectStmt = null;
+		try {
+			Class.forName("org.sqlite.JDBC");
+			connection = DriverManager.getConnection("jdbc:sqlite:test.db");
+
+
+			selectStmt = connection.createStatement();
+			String query = "Select avg_distance_as from avg_distance where UUID ="
+				+ "'" + uuid + "';";
+			ResultSet rs = selectStmt
+					.executeQuery(query);
+			System.out.println("Select avg_distance_as from avg_distance where UUID ="
+					+ "'" + uuid + "';");
+			while (rs.next()) {
+				System.out.println(rs.getDouble(1)); // First Column
+				System.out.println("test");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				selectStmt.close();
+				connection.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+}
