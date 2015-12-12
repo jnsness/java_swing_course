@@ -95,6 +95,8 @@ public class LogoFrame extends JFrame {
 
 				
 				new DbAccess().DbCalculateAVGDistanceFromYou(uuid);
+				new DbAccess().DbCalculateDistanceFromCentreOfGravity(uuid, gravityPoint);
+				
 			}
 		});
 

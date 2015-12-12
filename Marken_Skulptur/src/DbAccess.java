@@ -197,7 +197,7 @@ public class DbAccess {
 		String sqlQuery = "Select UUID, brandName, xcord, ycord from logo_info where UUID ="
 				+ "'" + uuid + "';";
 
-		ArrayList<QueryObjectsForCalculation> loopCache = new ArrayList<QueryObjectsForCalculation>();
+		ArrayList<QueryObjectsForCalculationDistances> loopCache = new ArrayList<QueryObjectsForCalculationDistances>();
 
 		try {
 			stmt = c.createStatement();
@@ -212,7 +212,7 @@ public class DbAccess {
 				// Creating a new object for arraylist
 				// "QueryObjectsForCalculation
 
-				QueryObjectsForCalculation objectForList = new QueryObjectsForCalculation(
+				QueryObjectsForCalculationDistances objectForList = new QueryObjectsForCalculationDistances(
 						uuidFromQuery, brandName, x, y);
 
 				loopCache.add(objectForList);
@@ -361,10 +361,9 @@ public class DbAccess {
 			ResultSet rs = stmt.executeQuery(sqlQuery);
 			while (rs.next()) {
 				avgDistanceFromYou = rs.getDouble("AVG(distance_from_you)");
-				String sql = "Update avg_distance SET avg_distance_to_you ="+ avgDistanceFromYou+" where UUID =" + "'"
-						+ uuid + "';";
-				
-				System.out.println(sql);
+				String sql = "Update avg_distance SET avg_distance_to_you ="
+						+ avgDistanceFromYou + " where UUID =" + "'" + uuid
+						+ "';";
 
 				stmt.execute(sql);
 
@@ -391,10 +390,16 @@ public class DbAccess {
 			System.exit(0);
 		}
 
-//		 find GravityPoint with Sum / Amount ("arithmetisches Mittel") in coordinates. "You" button is not in list and has to be counted in manually (+1)
+		// find GravityPoint with Sum / Amount ("arithmetisches Mittel") in
+		// coordinates. "You" button is not in list and has to be counted in
+		// manually (+1)
 		int youX = LogoFrame.YouLogo.getX();
 		int youY = LogoFrame.YouLogo.getY();
-		String sqlQuery = "select ((sum(xcord)+"+youX+")/(count(xcord))+1) as gravityPointX, ((sum(ycord)+"+youY+")/count((ycord))+1) as gravityPointY from logo_info where UUID ="
+		String sqlQuery = "select ((sum(xcord)+"
+				+ youX
+				+ ")/(count(xcord))+1) as gravityPointX, ((sum(ycord)+"
+				+ youY
+				+ ")/count((ycord))+1) as gravityPointY from logo_info where UUID ="
 				+ "'" + uuid + "';";
 
 		try {
@@ -434,6 +439,89 @@ public class DbAccess {
 		}
 
 		return gravityPoint;
+
+	}
+
+	public void DbCalculateDistanceFromCentreOfGravity(String uuid,
+			Point gravityPoint) {
+
+		ArrayList<QueryObjectsForCalculationGravPointDistances> distancesToGravPoint = new ArrayList<QueryObjectsForCalculationGravPointDistances>();
+
+		try {
+			Class.forName("org.sqlite.JDBC");
+			c = DriverManager.getConnection("jdbc:sqlite:test.db");
+		} catch (Exception e) {
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			System.exit(0);
+		}
+
+		int gravYouX = (int) gravityPoint.getX();
+		int gravYouY = (int) gravityPoint.getY();
+		String sqlQuery = "select xcord, ycord, brandName from logo_info where UUID ="
+				+ "'" + uuid + "';";
+
+		try {
+
+			stmt = c.createStatement();
+			ResultSet rs = stmt.executeQuery(sqlQuery);
+			while (rs.next()) {
+
+				int xcord = rs.getInt("xcord");
+				int ycord = rs.getInt("ycord");
+				String brandName = rs.getString("brandName");
+
+				// Vector-Calculation for Distance from Points to gravPoint
+
+				int distanceX = gravYouX - xcord;
+				int distanceY = gravYouY - ycord;
+
+				int distanceFromGravPoint = (int) Math
+						.sqrt((distanceX * distanceX) + (distanceY * distanceY));
+
+				// Generate new Object for in HelperClass
+				// QueryObjectsForCalculationGravPointDistances to create an
+				// Array to later fill DB gradually
+				QueryObjectsForCalculationGravPointDistances object = new QueryObjectsForCalculationGravPointDistances(
+						distanceFromGravPoint, brandName);
+
+				distancesToGravPoint.add(object);
+
+			}
+			c.setAutoCommit(false);
+			stmt.close();
+
+		}
+
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		// another stmt because to inserts in one is obviously not possible -
+		// this looks WAY overloaded but it is necassary to
+		try {
+			stmt = c.createStatement();
+			c.setAutoCommit(false);
+
+			for (QueryObjectsForCalculationGravPointDistances object : distancesToGravPoint) {
+
+				int distance = object.getDistanceFromGravPoint();
+				String brandName = object.getBrandName();
+
+				String sql = "Update logo_info SET distance_from_gravPoint ="
+						+ distance + " where UUID =" + "'" + uuid
+						+ "' AND brandName = '" + brandName + "'   ;";
+
+				stmt.execute(sql);
+			}
+
+			stmt.close();
+			c.commit();
+			c.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
