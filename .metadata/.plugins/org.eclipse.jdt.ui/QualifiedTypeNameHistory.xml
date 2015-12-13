@@ -4,7 +4,6 @@
 <fullyQualifiedTypeName name="Painter"/>
 <fullyQualifiedTypeName name="javax.swing.JPanel"/>
 <fullyQualifiedTypeName name="java.awt.Graphics"/>
-<fullyQualifiedTypeName name="java.awt.Color"/>
 <fullyQualifiedTypeName name="java.awt.Font"/>
 <fullyQualifiedTypeName name="java.awt.event.MouseEvent"/>
 <fullyQualifiedTypeName name="java.awt.event.MouseMotionListener"/>
@@ -47,9 +46,11 @@
 <fullyQualifiedTypeName name="java.sql.ResultSetMetaData"/>
 <fullyQualifiedTypeName name="java.util.Vector"/>
 <fullyQualifiedTypeName name="javax.swing.JTable"/>
-<fullyQualifiedTypeName name="javax.swing.JScrollPane"/>
 <fullyQualifiedTypeName name="javax.swing.table.DefaultTableModel"/>
 <fullyQualifiedTypeName name="DbQueryBuilder"/>
 <fullyQualifiedTypeName name="TableFromDatabase"/>
 <fullyQualifiedTypeName name="TableToJTable"/>
+<fullyQualifiedTypeName name="javax.swing.JTabbedPane"/>
+<fullyQualifiedTypeName name="javax.swing.JScrollPane"/>
+<fullyQualifiedTypeName name="java.awt.Color"/>
 </qualifiedTypeNameHistroy>

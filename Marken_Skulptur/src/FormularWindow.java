@@ -10,7 +10,6 @@ public class FormularWindow {
 	public FormularWindow() {
 
 		FormularWindowView view = new FormularWindowView();
-		getSelectedItem = (String)view.getCatComboBox().getSelectedItem();
 		
 		view.btnWeiter.addActionListener(new ActionListener() {
 
@@ -39,10 +38,6 @@ public class FormularWindow {
 
 		});
 	}
-
-	public static String getImageCategory() {
-		String valueCatComboBox = getSelectedItem;
-		return valueCatComboBox;
-	}
+	
 
 }

@@ -1,22 +1,15 @@
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
+import java.awt.Color;
 import java.awt.Image;
-import java.awt.Insets;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.net.URL;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
-import javax.swing.JLayeredPane;
-import javax.swing.JTabbedPane;
 
 public class ResultFrameView extends JFrame {
 	private JTextField textFieldAvgDistanceEO;
@@ -29,12 +22,19 @@ public class ResultFrameView extends JFrame {
 	private JTable tableForDistances;
 	private JTable tableForGravPointDistances;
 	private JTable tableForDistancesEachOther;
+	private JTable tableForOutside;
+	private JTable tableForUnderAvgEO;
+	private JTable tableForOverAvgEO;
+	private JTable tableForUnderAvgYou;
+	private JTable tableForOverAvgYou;
+	
+	
 	
 	public ResultFrameView(String uuid) {
 		this.valueOftextFieldAvgDistanceEO = valueOftextFieldAvgDistanceEO;
 	}
 
-	public void createPanel(String uuid) {
+	public void initGUI(String uuid) {
 
 		
 //		Panel Stuff
@@ -54,7 +54,7 @@ public class ResultFrameView extends JFrame {
 		panel.setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("Avg Distance (each other)");
-		lblNewLabel.setBounds(106, 30, 126, 14);
+		lblNewLabel.setBounds(106, 30, 192, 14);
 		panel.add(lblNewLabel);
 
 		// Set board to the right panel of resultFrame
@@ -84,7 +84,7 @@ public class ResultFrameView extends JFrame {
 		textFieldAvgDistanceEO.setColumns(10);
 
 		JLabel lblAvgDistanceTo = new JLabel("Avg Distance to you");
-		lblAvgDistanceTo.setBounds(106, 60, 97, 14);
+		lblAvgDistanceTo.setBounds(106, 60, 192, 14);
 		panel.add(lblAvgDistanceTo);
 
 		
@@ -98,7 +98,7 @@ public class ResultFrameView extends JFrame {
 		textFieldAvgDistanceToYou.setColumns(10);
 
 		JLabel lblGravitypoint = new JLabel("GravityPoint");
-		lblGravitypoint.setBounds(106, 91, 126, 14);
+		lblGravitypoint.setBounds(106, 91, 192, 14);
 		panel.add(lblGravitypoint);
 
 		textFieldGravityPoint = new JTextField();
@@ -113,14 +113,24 @@ public class ResultFrameView extends JFrame {
 		// TabbedPanel Result with Tables
 
 		JTabbedPane resultPane = new JTabbedPane(JTabbedPane.TOP);
-		resultPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
+		resultPane.setTabLayoutPolicy(JTabbedPane.WRAP_TAB_LAYOUT);
 		resultPane.setBounds(10, 124, 395, 506);
 
 		// Add Tabs to the TablePanel (resultPane) - Tables get filled by ResultFrame (which generates Data from HelperClass TableToJTable)
 
 		resultPane.addTab("Distances To You", new JScrollPane(tableForDistances));
-		resultPane.addTab("From Grav Point", new JScrollPane(tableForGravPointDistances));
-		resultPane.addTab("Distances Each Other",new JScrollPane(tableForDistancesEachOther));
+		resultPane.addTab("Distances Grav Point", new JScrollPane(tableForGravPointDistances));
+		resultPane.addTab("Distances EO",new JScrollPane(tableForDistancesEachOther));
+		resultPane.addTab("Outside",new JScrollPane(tableForOutside));
+		tableForOutside.setBackground(new Color(255,185,128));
+		resultPane.addTab("Under AVG distance EO",new JScrollPane(tableForUnderAvgEO));
+		tableForUnderAvgEO.setBackground(new Color(171,255,133));
+		resultPane.addTab("Over AVG distance EO",new JScrollPane(tableForOverAvgEO));
+		tableForOverAvgEO.setBackground(new Color(255,185,128));
+		resultPane.addTab("Under AVG distance to You",new JScrollPane(tableForUnderAvgYou));
+		tableForUnderAvgYou.setBackground(new Color(171,255,133));
+		resultPane.addTab("Over AVG distance to You",new JScrollPane(tableForOverAvgYou));
+		tableForOverAvgYou.setBackground(new Color(255,185,128));
 		
 		panel.add(resultPane);
 
@@ -152,6 +162,26 @@ public class ResultFrameView extends JFrame {
 
 	public void setTableForDistancesEachOther(JTable tableForDistancesEachOther) {
 		this.tableForDistancesEachOther = tableForDistancesEachOther;
+	}
+
+	public void setTableForOutside(JTable tableForOutside) {
+		this.tableForOutside = tableForOutside;
+	}
+
+	public void setTableForUnderAvgEO(JTable tableForUnderAvgEO) {
+		this.tableForUnderAvgEO = tableForUnderAvgEO;
+	}
+
+	public void setTableForOverAvgEO(JTable tableForOverAvgEO) {
+		this.tableForOverAvgEO = tableForOverAvgEO;
+	}
+
+	public void setTableForUnderAvgYou(JTable tableForUnderAvgYou) {
+		this.tableForUnderAvgYou = tableForUnderAvgYou;
+	}
+
+	public void setTableForOverAvgYou(JTable tableForOverAvgYou) {
+		this.tableForOverAvgYou = tableForOverAvgYou;
 	}
 	
 

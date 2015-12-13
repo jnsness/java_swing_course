@@ -12,6 +12,12 @@
 		<item value="329" key="y"/>
 		<item value="381" key="height"/>
 	</section>
+	<section name="org.eclipse.wb.internal.swing.laf.ui.AddCustomLookAndFeelDialog">
+		<item value="656" key="x"/>
+		<item value="607" key="width"/>
+		<item value="315" key="y"/>
+		<item value="409" key="height"/>
+	</section>
 	<section name="org.eclipse.wb.internal.swing.model.property.editor.icon.IconPropertyEditor$ImageDialog">
 		<item value="519" key="x"/>
 		<item value="881" key="width"/>

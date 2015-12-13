@@ -125,7 +125,7 @@ public class LogoFrame extends JFrame {
 
 		// Array to give every image from folder
 
-		String imageUrl = "images/" + FormularWindow.getImageCategory();
+		String imageUrl = "images/" + FormularWindowView.getImageCategory();
 		File f = new File(imageUrl);
 		File[] fa = f.listFiles();
 

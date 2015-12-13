@@ -38,6 +38,19 @@
 		<item value="600" key="width"/>
 		<item value="400" key="height"/>
 	</section>
+	<section name="FatJarPackageWizard">
+		<item value="C:\Users\Jnsness\Documents\GitHub\java_swing_course" key="FatJarPackageWizardPage.ANTSCRIPT_LOCATION"/>
+		<item value="Application - Marken_Skulptur" key="FatJarPackageWizardPage.LAUNCH_CONFIGURATION_SELECTION_NAME"/>
+		<item value="C:\Users\Jnsness\Desktop\Export_Java_Project\brand_equity.jar" key="FatJarPackageWizardPage.DESTINATION_PATH_SELECTION"/>
+		<item value="false" key="FatJarPackageWizardPage.ANTSCRIPT_SAVE"/>
+		<item value="2" key="FatJarPackageWizardPage.LIBRARY_HANDLING"/>
+		<list key="FatJarPackageWizardPage.DESTINATION_NAMES_ID">
+			<item value="C:\Users\Jnsness\Desktop\Export_Java_Project\brand_equity.jar"/>
+		</list>
+		<list key="FatJarPackageWizardPage.ANTSCRIPT_LOCATION_HISTORY">
+			<item value=".xml"/>
+		</list>
+	</section>
 	<section name="SourceActionDialog.methods">
 		<item value="false" key="SynchronizedModifier"/>
 		<item value="false" key="Comments"/>

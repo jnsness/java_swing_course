@@ -15,7 +15,7 @@ import javax.swing.SpinnerNumberModel;
 public class FormularWindowView {
 
 	private JFrame frame;
-	public JComboBox catComboBox;
+	public static JComboBox catComboBox;
 	public JTextField txtName;
 	public JTextField txtNachname;
 	public JTextField txtBeruf;
@@ -213,8 +213,9 @@ public class FormularWindowView {
 		this.txtpnWillkommenImMarkenbewertungstool = txtpnWillkommenImMarkenbewertungstool;
 	}
 
-	public String getImageCategory() {
-		String valueCatComboBox = (String) catComboBox.getSelectedItem();
+	public static String getImageCategory() {
+		String valueCatComboBox = (String)catComboBox.getSelectedItem();
+		System.out.println(valueCatComboBox);
 		return valueCatComboBox;
 	}
 
