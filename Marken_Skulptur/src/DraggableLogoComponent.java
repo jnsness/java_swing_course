@@ -17,6 +17,8 @@
  *  under the License.
  */
 
+//http://www.codeproject.com/Articles/116088/Draggable-Components-in-Java-Swing
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;

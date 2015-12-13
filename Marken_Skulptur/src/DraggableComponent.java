@@ -8,6 +8,8 @@ import java.awt.event.MouseMotionListener;
 
 import javax.swing.JComponent;
 
+//http://www.codeproject.com/Articles/116088/Draggable-Components-in-Java-Swing
+
 public class DraggableComponent extends JComponent {
 
 	private boolean draggable = true;

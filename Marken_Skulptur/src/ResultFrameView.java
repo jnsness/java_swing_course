@@ -23,8 +23,22 @@ public class ResultFrameView extends JFrame {
 	private JTextField textFieldAvgDistanceToYou;
 	private JTextField textFieldGravityPoint;
 
+	private String valueOftextFieldAvgDistanceEO;
+	private String valueOftextFieldAvgDistanceToYou;
+	private String valueOftextFieldGravityPoint;
+	private JTable tableForDistances;
+	private JTable tableForGravPointDistances;
+	private JTable tableForDistancesEachOther;
+	
 	public ResultFrameView(String uuid) {
+		this.valueOftextFieldAvgDistanceEO = valueOftextFieldAvgDistanceEO;
+	}
 
+	public void createPanel(String uuid) {
+
+		
+//		Panel Stuff
+		
 		setVisible(true);
 		setSize(1200, 900);
 		setResizable(false);
@@ -57,14 +71,14 @@ public class ResultFrameView extends JFrame {
 		JLabel label = new JLabel(icon, JLabel.CENTER);
 		panelRight.add(label);
 
+		
+//		Fill TextField with Values
+		
 		textFieldAvgDistanceEO = new JTextField();
 		textFieldAvgDistanceEO.setEditable(false);
-		
-		
-		new DbQueryBuilder().getavgDistanceAs(uuid);
-		textFieldAvgDistanceEO.setText(String.valueOf((int)new DbQueryBuilder().getavgDistanceAs(uuid)));
-		
-		
+
+		textFieldAvgDistanceEO.setText(valueOftextFieldAvgDistanceEO);
+
 		textFieldAvgDistanceEO.setBounds(308, 27, 70, 20);
 		panel.add(textFieldAvgDistanceEO);
 		textFieldAvgDistanceEO.setColumns(10);
@@ -73,7 +87,12 @@ public class ResultFrameView extends JFrame {
 		lblAvgDistanceTo.setBounds(106, 60, 97, 14);
 		panel.add(lblAvgDistanceTo);
 
+		
+		
 		textFieldAvgDistanceToYou = new JTextField();
+		textFieldAvgDistanceToYou.setEditable(false);
+		textFieldAvgDistanceToYou.setText(valueOftextFieldAvgDistanceToYou);
+		
 		textFieldAvgDistanceToYou.setBounds(308, 57, 70, 20);
 		panel.add(textFieldAvgDistanceToYou);
 		textFieldAvgDistanceToYou.setColumns(10);
@@ -83,6 +102,10 @@ public class ResultFrameView extends JFrame {
 		panel.add(lblGravitypoint);
 
 		textFieldGravityPoint = new JTextField();
+		textFieldGravityPoint.setEditable(false);
+		textFieldGravityPoint.setText(valueOftextFieldGravityPoint);
+
+		
 		textFieldGravityPoint.setBounds(308, 88, 70, 20);
 		panel.add(textFieldGravityPoint);
 		textFieldGravityPoint.setColumns(10);
@@ -93,29 +116,43 @@ public class ResultFrameView extends JFrame {
 		resultPane.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 		resultPane.setBounds(10, 124, 395, 506);
 
-//		Data for Table
+		// Add Tabs to the TablePanel (resultPane) - Tables get filled by ResultFrame (which generates Data from HelperClass TableToJTable)
+
+		resultPane.addTab("Distances To You", new JScrollPane(tableForDistances));
+		resultPane.addTab("From Grav Point", new JScrollPane(tableForGravPointDistances));
+		resultPane.addTab("Distances Each Other",new JScrollPane(tableForDistancesEachOther));
 		
-		String[][] rowData = { { "Japan", "245" }, { "USA", "240" },
-				{ "Italien", "220" }, { "Spanien", "217" },
-				{ "Türkei", "215" }, { "England", "214" },
-				{ "Frankreich", "190" }, { "Griechenland", "185" },
-				{ "Deutschland", "180" }, { "Portugal", "170" } };
-		
-		 String[] columnNames =  {
-			      "Land", "Durchschnittliche Fernsehdauer pro Tag in Minuten"
-			    };
-		 
-		 
-		 JTable table1 = new JTable(rowData,columnNames);
-		 table1.setFillsViewportHeight(true);
-
-		 
-		JTable table2 = new JTable();
-
-		resultPane.addTab("Erster", new JScrollPane(table1));
-		resultPane.addTab("Zweiter", table2);
-
 		panel.add(resultPane);
 
 	}
+
+//	Setters for TextField Values
+	
+	public void setValueOftextFieldAvgDistanceEO(
+			String valueOftextFieldAvgDistanceEO) {
+		this.valueOftextFieldAvgDistanceEO = valueOftextFieldAvgDistanceEO;
+	}
+
+	public void setValueOftextFieldAvgDistanceToYou(
+			String valueOftextFieldAvgDistanceToYou) {
+		this.valueOftextFieldAvgDistanceToYou = valueOftextFieldAvgDistanceToYou;
+	}
+
+	public void setValueOftextFieldGravityPoint(String valueOftextFieldGravityPoint) {
+		this.valueOftextFieldGravityPoint = valueOftextFieldGravityPoint;
+	}
+
+	public void setTableForDistances(JTable tableForDistances) {
+		this.tableForDistances = tableForDistances;
+	}
+
+	public void setTableForGravPointDistances(JTable tableForGravPointDistances) {
+		this.tableForGravPointDistances = tableForGravPointDistances;
+	}
+
+	public void setTableForDistancesEachOther(JTable tableForDistancesEachOther) {
+		this.tableForDistancesEachOther = tableForDistancesEachOther;
+	}
+	
+
 }
