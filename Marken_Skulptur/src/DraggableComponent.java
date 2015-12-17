@@ -19,6 +19,9 @@ public class DraggableComponent extends JComponent {
 			.getPredefinedCursor(Cursor.HAND_CURSOR);
 
 	protected boolean overbearing = false;
+	
+//  extended centrePoint for calculating correct gravityPoint
+  private Point centrePoint = new Point();
 
 	public DraggableComponent() {
 		addDragListeners();
@@ -56,6 +59,7 @@ public class DraggableComponent extends JComponent {
 				Point position = new Point(mouseOnScreen.x - parentOnScreen.x
 						- anchorX, mouseOnScreen.y - parentOnScreen.y - anchorY);
 				setLocation(position);
+				calculateCenterPoint();
 
 				// Change Z-Buffer if it is "overbearing"
 				if (overbearing) {
@@ -63,6 +67,8 @@ public class DraggableComponent extends JComponent {
 					repaint();
 				}
 			}
+
+
 		});
 	}
 
@@ -102,5 +108,16 @@ public class DraggableComponent extends JComponent {
 	public void setOverbearing(boolean overbearing) {
 		this.overbearing = overbearing;
 	}
+
+	public Point getCentrePoint() {
+		return centrePoint;
+	}
+
+	
+	public void calculateCenterPoint() {
+		centrePoint.setLocation((int)(this.getLocation().getX()+this.getWidth()/2), (int)this.getLocation().getY()+this.getHeight()/2);
+
+	}
+	
 
 }

@@ -84,8 +84,10 @@ public class DbAccess {
 				int x = logo.getX();
 				int y = logo.getY();
 				int innerFrame = 0;
+				int centreX = (int) logo.getCentrePoint().getX();
+				int centreY = (int) logo.getCentrePoint().getY();
 
-				if (x > 60 && x < 770 && y > 50 && y < 740) {
+				if (centreX > 90 && centreX < 810 && centreY > 90 && centreY < 780) {
 					innerFrame = 1;
 				}
 
@@ -111,7 +113,7 @@ public class DbAccess {
 				int distanceSquareRoot = (int) Math
 						.sqrt((distanceX * distanceX) + (distanceY * distanceY));
 
-				String sql = "INSERT INTO logo_info (UUID,logo_name,category,brandName,xcord,ycord,innerFrame,distance_from_you) VALUES ("
+				String sql = "INSERT INTO logo_info (UUID,logo_name,category,brandName,xcord,ycord,centreX,centreY,innerFrame,distance_from_you) VALUES ("
 						+ "'"
 						+ uuid
 						+ "'"
@@ -131,6 +133,10 @@ public class DbAccess {
 						+ x
 						+ ","
 						+ y
+						+ ","
+						+ centreX
+						+ ","
+						+ centreY
 						+ ","
 						+ innerFrame + "," + distanceSquareRoot + ");";
 				stmt.executeUpdate(sql);
@@ -395,13 +401,13 @@ public class DbAccess {
 		// find GravityPoint with Sum / Amount ("arithmetisches Mittel") in
 		// coordinates. "You" button is not in list and has to be counted in
 		// manually (+1)
-		int youX = LogoFrame.YouLogo.getX();
-		int youY = LogoFrame.YouLogo.getY();
-		String sqlQuery = "select ((sum(xcord)+"
+		int youX = (int) LogoFrame.YouLogo.getCentrePoint().getX();
+		int youY = (int) LogoFrame.YouLogo.getCentrePoint().getY();
+		String sqlQuery = "select ((sum(centreX)+"
 				+ youX
-				+ ")/(count(xcord))+1) as gravityPointX, ((sum(ycord)+"
+				+ ")/(count(centreX))+1) as gravityPointX, ((sum(centreY)+"
 				+ youY
-				+ ")/count((ycord))+1) as gravityPointY from logo_info where UUID ="
+				+ ")/count((centreY))+1) as gravityPointY from logo_info where UUID ="
 				+ "'" + uuid + "';";
 
 		try {

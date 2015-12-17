@@ -1,9 +1,0 @@
-public class TimeCounter {
-
-	long startTime;
-	long endTime;
-
-	public TimeCounter() {
-		startTime = System.currentTimeMillis();
-	}
-}

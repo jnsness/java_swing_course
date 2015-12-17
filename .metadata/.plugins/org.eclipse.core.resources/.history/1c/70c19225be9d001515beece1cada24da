@@ -1,8 +1,0 @@
-
-public class QueryObjectsForCalculation {
-	
-	public QueryObjectsForCalculation(String uuidFromQuery, String brandName, int x, int y) {
-		
-	}
-	
-}

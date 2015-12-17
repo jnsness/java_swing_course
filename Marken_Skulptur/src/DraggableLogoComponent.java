@@ -42,7 +42,8 @@ public class DraggableLogoComponent extends DraggableComponent implements ImageO
     private boolean autoSize = false;
     private Dimension autoSizeDimension = new Dimension(0, 0);
     private String fileName;
-    private Point location;
+    
+
     
     public DraggableLogoComponent(String fileName) {
         super();
@@ -63,7 +64,7 @@ public class DraggableLogoComponent extends DraggableComponent implements ImageO
     protected void paintComponent(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
             setAutoSizeDimension();
-            g2d.drawImage(image, 0, 0, getWidth(), getHeight(), this);
+            g2d.drawImage(image, 0,0, getWidth(), getHeight(), this);
     }
 
     /**
@@ -191,9 +192,7 @@ public class DraggableLogoComponent extends DraggableComponent implements ImageO
 		return fileName;
 	}
 
-	public Point getLocation() {
-		return location;
-	}
+
 
 	
     

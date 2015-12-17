@@ -155,7 +155,9 @@ public class LogoFrame extends JFrame {
 		// randomize location of logos
 		logo.setLocation((int) (Math.random() * 830),
 				(int) (Math.random() * 810));
-
+		
+		logo.calculateCenterPoint();
+		
 		dPanel.repaint();
 
 		if (fileName.equals("images/you_point.png")) {

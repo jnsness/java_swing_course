@@ -34,7 +34,6 @@
 <fullyQualifiedTypeName name="java.net.URL"/>
 <fullyQualifiedTypeName name="DraggableLogoComponent"/>
 <fullyQualifiedTypeName name="SnapShot"/>
-<fullyQualifiedTypeName name="LogoFrame"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="java.sql.Statement"/>
 <fullyQualifiedTypeName name="java.sql.ResultSet"/>
@@ -53,4 +52,5 @@
 <fullyQualifiedTypeName name="javax.swing.JTabbedPane"/>
 <fullyQualifiedTypeName name="javax.swing.JScrollPane"/>
 <fullyQualifiedTypeName name="java.awt.Color"/>
+<fullyQualifiedTypeName name="LogoFrame"/>
 </qualifiedTypeNameHistroy>

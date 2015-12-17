@@ -45,9 +45,9 @@ public class LogoFrameView extends JPanel {
 
 		if (PaintControl == 1) {
 			for (DraggableLogoComponent logo : logolist) {
-				g.drawLine(logo.getX(), logo.getY(), (int) gravityPoint.getX(),
+				g.drawLine((int)logo.getCentrePoint().getX(),(int)logo.getCentrePoint().getY(), (int) gravityPoint.getX(),
 						(int) gravityPoint.getY());
-				g.drawLine(LogoFrame.YouLogo.getX(), LogoFrame.YouLogo.getY(), (int) gravityPoint.getX(),
+				g.drawLine((int)LogoFrame.YouLogo.getCentrePoint().getX(), (int)LogoFrame.YouLogo.getCentrePoint().getY(), (int) gravityPoint.getX(),
 						(int) gravityPoint.getY());
 			}
 
