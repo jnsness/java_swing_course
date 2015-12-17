@@ -13,6 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -93,10 +94,12 @@ public class LogoFrame extends JFrame {
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				setVisible(false);
-
 				new DbAccess().DbSaveTimeData(uuid,
 						elapsedTime.setEndTime(System.currentTimeMillis()));
+				
+				String thxText = "Vielen Dank! Ihr Berater wird nun die berechneten Ergebnisse mit Ihnen besprechen";
+				JOptionPane.showMessageDialog(dPanel, thxText);
+				
 				new DbAccess().DbSaveLogoData(uuid, logolist);
 				new DbAccess().DbCalculateDistances(uuid);
 
@@ -112,6 +115,8 @@ public class LogoFrame extends JFrame {
 				new DbAccess().DbCalculateAVGDistanceFromYou(uuid);
 				new DbAccess().DbCalculateDistanceFromCentreOfGravity(uuid,
 						gravityPoint);
+				
+				setVisible(false);
 				new ResultFrame(uuid);
 			}
 		});

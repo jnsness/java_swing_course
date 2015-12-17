@@ -25,7 +25,7 @@ public class FormularWindow {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 
-				String introText = "Im nächsten Fenster werden Sie eine Reihe von Rechtecken sehen.\nEin Rechteck ist grün und repräsentiert Sie.\nDie Fläche darunter hat einen Innen- und Außenraum.\nOrdnen Sie alle Rechtecke ganz nach Ihrem Belieben an.\nDie Rechtecke können nah beieinander oder auch weit entfernt gesetzt werden.\nWenn Sie mit dem Anordnen fertig sind, klicken Sie bitte auf save-and-next";
+				String introText = "Im nächsten Fenster werden Sie eine Reihe von Rechtecken sehen.\nEin Rechteck ist grün und repräsentiert Sie.\nDie Fläche darunter hat einen Innen- und Außenraum.\nOrdnen Sie alle Rechtecke ganz nach Ihrem Belieben an.\nDie Rechtecke können nah beieinander oder auch weit entfernt gesetzt werden.\nWenn Sie mit dem Anordnen fertig sind, klciekn Sie einfach ";
 
 				JOptionPane.showMessageDialog(view.frame, introText);
 

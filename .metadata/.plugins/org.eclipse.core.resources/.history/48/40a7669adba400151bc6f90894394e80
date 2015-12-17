@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 
 /**
  * "Controller" des Frames zum Anordnen der Logos.
+ * 
  * @author Jnsness
  */
 
@@ -41,7 +42,7 @@ public class LogoFrame extends JFrame {
 	 * 
 	 * Save-Button steuert Reihe von DB Zugriffen an und ruft nächsten Frame auf
 	 * 
-	 * @param uuid wird über durch jeden Frame weitergegeben um DB Zugriffe zu verringern
+	 * @param uuid - wird über durch jeden Frame weitergegeben um DB Zugriffe zu verringern. Foreign Key jeder Tabelle
 	 */
 	public LogoFrame(String uuid) {
 
@@ -75,7 +76,6 @@ public class LogoFrame extends JFrame {
 		btnRedo.setBounds(39, 819, 75, 41);
 		btnRedo.setText("Shuffle");
 		buttonPanel.add(btnRedo);
-
 
 		btnRedo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -129,7 +129,9 @@ public class LogoFrame extends JFrame {
 	}
 
 	/**
-	 * 
+	 * Wird automatisch als new Runnable aufgerufen leert dPanel und füllt
+	 * daraufhin logolist (Arraylist) mit 10 Logos (for-Schleife) aus Kategorie
+	 * des FormularWindow
 	 */
 	public void loadLogos() {
 		dPanel.removeAll();
@@ -147,23 +149,28 @@ public class LogoFrame extends JFrame {
 
 	}
 
+	/**
+	 * Instanziiert jedes mal ein DraggableLogoComponent, fügt dies der logoList
+	 * hinzu, setzt das Bild aus der URL /Category/Filename.jpg, und randomized
+	 * die Location sofern Aufruf über you_point passiert, wird Größe erhöht und
+	 * logo wird der Klassen-Variable YouLogo zugewiesen
+	 * 
+	 * @param fileName - Dateiname (URL /Category/Filename.jpg) aus Image-Ordner der jeweiligen Kategorie wird übergeben um dies als Name anzuhängen
+	 */
 	public void addNewLogo(String fileName) {
-		// Get resources from Directory or Jar file
 		Image img = Toolkit.getDefaultToolkit().createImage(fileName);
 
-		// Creates a draggableImageComponent and adds loaded image
 		DraggableLogoComponent logo = new DraggableLogoComponent(fileName);
 		dPanel.add(logo);// Adds this component to main container
 
 		logolist.add(logo);
 
-		logo.setImage(img);// Sets image
-		logo.setAutoSize(true);// The component get ratio w/h of source image
-		logo.setOverbearing(true);// On click ,this panel gains lowest z-buffer
+		logo.setImage(img);
+		logo.setAutoSize(true);
+		logo.setOverbearing(true);
 
 		logo.setSize(75, 75);
 
-		// randomize location of logos
 		logo.setLocation((int) (Math.random() * 830),
 				(int) (Math.random() * 810));
 
@@ -178,6 +185,14 @@ public class LogoFrame extends JFrame {
 
 	}
 
+	/**
+	 * wird automatisch als new Runnable aufgerufen lädt das You Logo mit fester
+	 * URL "images/you_point.png" Ruft einfach loadlogos mit dieser URL auf,
+	 * daher wird Logo im Anschluss aus Arraylist wieder gelöscht = Grund
+	 * hierfür ist, dass später Berechnung anhand der arraylist durchgeführt
+	 * werden und eine sauberere Trennung der DB-Tabellen
+	 */
+
 	public void loadYouImage() {
 		// Load "youLogo" | Personal image
 
@@ -190,6 +205,12 @@ public class LogoFrame extends JFrame {
 
 	}
 
+	/**
+	 * Static Methode um YouLogo anderen Klassen bereitzustellen. Beispielsweise
+	 * Speicherung in der DB
+	 * 
+	 * @return gibt YouLogo zurück
+	 */
 	public static DraggableLogoComponent getYouLogo() {
 		return YouLogo;
 	}

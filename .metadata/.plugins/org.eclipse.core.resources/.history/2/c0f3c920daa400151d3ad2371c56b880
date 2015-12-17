@@ -19,7 +19,7 @@ import javax.swing.SpinnerNumberModel;
  */
 public class FormularWindowView {
 
-	JFrame frame;
+	private JFrame frame;
 	public static JComboBox catComboBox;
 	public JTextField txtName;
 	public JTextField txtNachname;

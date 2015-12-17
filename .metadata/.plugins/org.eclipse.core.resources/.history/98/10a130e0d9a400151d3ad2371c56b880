@@ -2,12 +2,8 @@ import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JOptionPane;
-
 /**
- * Controller für Fomrular-Window. Instanziiert die die View
- * (FormularWindowsView) und lädt danach den LogoFrame
- * 
+ * Controller für Fomrular-Window. Instanziiert die die View (FormularWindowsView) und lädt danach den LogoFrame
  * @author Jnsness
  */
 
@@ -15,20 +11,19 @@ public class FormularWindow {
 
 	public static Point frameLocation;
 	public static String getSelectedItem;
-
+	
 	public FormularWindow() {
 
 		FormularWindowView view = new FormularWindowView();
 
 		view.btnWeiter.addActionListener(new ActionListener() {
 
+
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 
-				String introText = "Im nächsten Fenster werden Sie eine Reihe von Rechtecken sehen.\nEin Rechteck ist grün und repräsentiert Sie.\nDie Fläche darunter hat einen Innen- und Außenraum.\nOrdnen Sie alle Rechtecke ganz nach Ihrem Belieben an.\nDie Rechtecke können nah beieinander oder auch weit entfernt gesetzt werden.\nWenn Sie mit dem Anordnen fertig sind, klicken Sie bitte auf save-and-next";
-
-				JOptionPane.showMessageDialog(view.frame, introText);
-
+				
+				
 				// Set Location for new window to appear at the same point
 				frameLocation = view.getFrame().getLocation();
 
@@ -51,5 +46,6 @@ public class FormularWindow {
 
 		});
 	}
+	
 
 }
