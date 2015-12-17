@@ -1,6 +1,9 @@
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.Stroke;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
@@ -43,12 +46,20 @@ public class LogoFrameView extends JPanel {
 		g.drawLine(810, 780, 810, 90);
 		g.drawLine(810, 90, 90, 90);
 
+		Graphics2D g2d = (Graphics2D) g.create();
+
 		if (PaintControl == 1) {
 			for (DraggableLogoComponent logo : logolist) {
-				g.drawLine((int)logo.getCentrePoint().getX(),(int)logo.getCentrePoint().getY(), (int) gravityPoint.getX(),
+				g2d.setStroke(new BasicStroke(2.0f, BasicStroke.CAP_SQUARE,
+						BasicStroke.JOIN_MITER, 10.0f, new float[] { 16.0f,
+								20.0f }, 0.0f));
+
+				g2d.drawLine((int) logo.getCentrePoint().getX(), (int) logo
+						.getCentrePoint().getY(), (int) gravityPoint.getX(),
 						(int) gravityPoint.getY());
-				g.drawLine((int)LogoFrame.YouLogo.getCentrePoint().getX(), (int)LogoFrame.YouLogo.getCentrePoint().getY(), (int) gravityPoint.getX(),
-						(int) gravityPoint.getY());
+				g2d.drawLine((int) LogoFrame.YouLogo.getCentrePoint().getX(),
+						(int) LogoFrame.YouLogo.getCentrePoint().getY(),
+						(int) gravityPoint.getX(), (int) gravityPoint.getY());
 			}
 
 		}

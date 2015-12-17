@@ -1,7 +1,11 @@
 import javax.swing.SwingUtilities;
 
 
-
+/**
+ * 
+ * @author Jnsness
+ *Start-Klasse - instanziiert ein FormularWindow
+ */
 
 public class Application {
 

@@ -12,6 +12,11 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.SpinnerNumberModel;
 
+/**
+ * View des FormularWindows - beinhaltet viele Textflächen, Buttons und natürlich Getters
+ * @author Jnsness
+ *
+ */
 public class FormularWindowView {
 
 	private JFrame frame;

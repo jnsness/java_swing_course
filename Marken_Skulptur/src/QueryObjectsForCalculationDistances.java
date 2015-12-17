@@ -1,3 +1,10 @@
+/**
+ * Hilfsklasse um Werte in ein passendes Objekt zu überführen. Wird benötigt um Arraylist zu bilden für Distanzberechnung aller Logos untereinander
+ * 
+ * @author Jnsness
+ *
+ */
+
 
 public class QueryObjectsForCalculationDistances {
 	

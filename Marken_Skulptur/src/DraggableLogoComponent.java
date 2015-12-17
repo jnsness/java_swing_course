@@ -35,6 +35,8 @@ import java.awt.image.ImageObserver;
  * It implements  ImageObserver for Image loading problems. it repaints itself after
  * image is full loaded.
  *
+ *http://www.codeproject.com/Articles/116088/Draggable-Components-in-Java-Swing
+ *Copyright 2010 De Gregorio Daniele.
  */
 public class DraggableLogoComponent extends DraggableComponent implements ImageObserver {
 

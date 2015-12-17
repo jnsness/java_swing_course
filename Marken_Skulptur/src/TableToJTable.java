@@ -8,6 +8,7 @@ import java.sql.*;
  * database connection and corresponding atable name.
  * 
  * @author Hemraj
+ * adapted from http://www.programmingforfuture.com/2010/05/generating-jtable-from-database-table.html
  */
 
 // adapted from http://www.programmingforfuture.com/2010/05/generating-jtable-from-database-table.html

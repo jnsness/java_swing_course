@@ -6,6 +6,12 @@ import java.net.URL;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
+/**
+ * Hilfsklasse - kann angesteuert werden um LogoFrame als Bild abzuspeichern. Wird von "Weiter" Button angesteuert
+ * 
+ * @author Jnsness
+ *
+ */
 
 public class SnapShot extends LogoFrameView {
 

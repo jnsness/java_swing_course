@@ -9,6 +9,14 @@ import java.util.Vector;
 
 import javax.swing.table.DefaultTableModel;
 
+/**
+ * wird als Ergebnis-Lieferant verwendet Daten werden aus der DB gelesen und
+ * zurückgegeben
+ * 
+ * @author Jnsness
+ *
+ */
+
 public class DbQueryBuilder {
 
 	private Connection con;
@@ -17,6 +25,13 @@ public class DbQueryBuilder {
 	public DbQueryBuilder() {
 	}
 
+	/**
+	 * Berechnet in Query die durchschnittliche Distanz jedes Logos zueinander
+	 * 
+	 * @param uuid
+	 *            - Foreign Key jeder Tabelle
+	 * @return - Durchschnittsdistanz aller Logos untereinander
+	 */
 	public double getavgDistanceAs(String uuid) {
 
 		double avgDistanceAs = 0;
@@ -47,6 +62,14 @@ public class DbQueryBuilder {
 		}
 		return avgDistanceAs;
 	}
+
+	/**
+	 * Berechnet in Query die durchschnittliche Distanz jedes Logos zum YouLogo
+	 * 
+	 * @param uuid
+	 *            - Foreign Key jeder Tabelle
+	 * @return - DurschnittsDistanz zum YouLogo
+	 */
 
 	public double getavgDistanceToYou(String uuid) {
 
@@ -79,6 +102,12 @@ public class DbQueryBuilder {
 		return avgDistanceToYou;
 	}
 
+	/**
+	 * holt lediglich Schwerpunkt aus der Datenbank und gibt diesen aus
+	 * 
+	 * @param uuid - Foreign Key jeder Tabelle
+	 * @return - Schwerpunkt
+	 */
 	public Point getGravPoint(String uuid) {
 
 		Point gravPoint = new Point();
@@ -109,6 +138,5 @@ public class DbQueryBuilder {
 		}
 		return gravPoint;
 	}
-
 
 }

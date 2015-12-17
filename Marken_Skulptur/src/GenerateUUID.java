@@ -1,5 +1,9 @@
 import java.util.UUID;
-
+/**
+ * Hilfsklasse: generiert UUIDs
+ * @author Jnsness
+ *
+ */
 public class GenerateUUID {
 
 	public static UUID id;
@@ -7,11 +11,7 @@ public class GenerateUUID {
 	public GenerateUUID() {
 
 		id = UUID.randomUUID();
-		log("UUID One: " + id);
 
 	}
 
-	private static void log(Object aObject) {
-		System.out.println(String.valueOf(aObject));
-	}
 }

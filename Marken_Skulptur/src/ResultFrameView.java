@@ -11,6 +11,14 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
+/**
+ * Stellt die GUI des Ergebnis-Fensters dar. Besitzt deshalb zahlreiche Setter, da diese angesteuert werden. 
+ * Lädt das Bild der Skulptur in das rechte Panel und stellt die Werte und Tabellen in dem linken Panel da.
+ * 
+ * @author Jnsness
+ *
+ */
+
 public class ResultFrameView extends JFrame {
 	private JTextField textFieldAvgDistanceEO;
 	private JTextField textFieldAvgDistanceToYou;

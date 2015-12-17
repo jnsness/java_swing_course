@@ -2,6 +2,11 @@ import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Controller für Fomrular-Window. Instanziiert die die View (FormularWindowsView) und lädt danach den LogoFrame
+ * @author Jnsness
+ */
+
 public class FormularWindow {
 
 	public static Point frameLocation;
@@ -10,8 +15,9 @@ public class FormularWindow {
 	public FormularWindow() {
 
 		FormularWindowView view = new FormularWindowView();
-		
+
 		view.btnWeiter.addActionListener(new ActionListener() {
+
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {

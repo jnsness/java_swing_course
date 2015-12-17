@@ -15,6 +15,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**
+ * "Controller" des Frames zum Anordnen der Logos.
+ * 
+ * @author Jnsness
+ */
+
 public class LogoFrame extends JFrame {
 
 	private TimeCounter elapsedTime;
@@ -25,6 +31,19 @@ public class LogoFrame extends JFrame {
 	public ArrayList<DraggableLogoComponent> logolist;
 	public static DraggableLogoComponent YouLogo;
 
+	/**
+	 * Frame ist bewusst nicht resizable, damit letztliche Werte nicht
+	 * verfälscht werden Zeit wird ab diesem Frame aufgenommen und später und
+	 * bei Klick auf Weiter in DB geschrieben
+	 * 
+	 * LogoFrameView wird instanziiert
+	 * 
+	 * Shuffle-Button lässt Arraylist leeren, neu befüllen + YouLogo
+	 * 
+	 * Save-Button steuert Reihe von DB Zugriffen an und ruft nächsten Frame auf
+	 * 
+	 * @param uuid - wird über durch jeden Frame weitergegeben um DB Zugriffe zu verringern. Foreign Key jeder Tabelle
+	 */
 	public LogoFrame(String uuid) {
 
 		logolist = new ArrayList<DraggableLogoComponent>();
@@ -91,22 +110,14 @@ public class LogoFrame extends JFrame {
 				new SnapShot().getSnapShot(dPanel, uuid);
 				new DbAccess().DbCalculateAVGDistance(uuid);
 				new DbAccess().DbCalculateAVGDistanceFromYou(uuid);
-				new DbAccess().DbCalculateDistanceFromCentreOfGravity(uuid, gravityPoint);
+				new DbAccess().DbCalculateDistanceFromCentreOfGravity(uuid,
+						gravityPoint);
 				new ResultFrame(uuid);
 			}
 		});
 
-		// add Panels to Frame
-
 		getContentPane().add(buttonPanel, BorderLayout.EAST);
 		getContentPane().add(dPanel, BorderLayout.WEST);
-
-		/*
-		 * Is good create a Thread to manipulate Forms and Files. In this
-		 * particular case an <b>invokeLater</b> is needed becaouse all Forms
-		 * graphics operations needs to be elaborated after pending events are
-		 * processed
-		 */
 
 		java.awt.EventQueue.invokeLater(new Runnable() {
 
@@ -118,7 +129,9 @@ public class LogoFrame extends JFrame {
 	}
 
 	/**
-	 * Generate names of files
+	 * Wird automatisch als new Runnable aufgerufen leert dPanel und füllt
+	 * daraufhin logolist (Arraylist) mit 10 Logos (for-Schleife) aus Kategorie
+	 * des FormularWindow
 	 */
 	public void loadLogos() {
 		dPanel.removeAll();
@@ -136,28 +149,33 @@ public class LogoFrame extends JFrame {
 
 	}
 
+	/**
+	 * Instanziiert jedes mal ein DraggableLogoComponent, fügt dies der logoList
+	 * hinzu, setzt das Bild aus der URL /Category/Filename.jpg, und randomized
+	 * die Location sofern Aufruf über you_point passiert, wird Größe erhöht und
+	 * logo wird der Klassen-Variable YouLogo zugewiesen
+	 * 
+	 * @param fileName - Dateiname (URL /Category/Filename.jpg) aus Image-Ordner der jeweiligen Kategorie wird übergeben um dies als Name anzuhängen
+	 */
 	public void addNewLogo(String fileName) {
-		// Get resources from Directory or Jar file
 		Image img = Toolkit.getDefaultToolkit().createImage(fileName);
 
-		// Creates a draggableImageComponent and adds loaded image
 		DraggableLogoComponent logo = new DraggableLogoComponent(fileName);
 		dPanel.add(logo);// Adds this component to main container
 
 		logolist.add(logo);
 
-		logo.setImage(img);// Sets image
-		logo.setAutoSize(true);// The component get ratio w/h of source image
-		logo.setOverbearing(true);// On click ,this panel gains lowest z-buffer
+		logo.setImage(img);
+		logo.setAutoSize(true);
+		logo.setOverbearing(true);
 
 		logo.setSize(75, 75);
 
-		// randomize location of logos
 		logo.setLocation((int) (Math.random() * 830),
 				(int) (Math.random() * 810));
-		
+
 		logo.calculateCenterPoint();
-		
+
 		dPanel.repaint();
 
 		if (fileName.equals("images/you_point.png")) {
@@ -166,6 +184,14 @@ public class LogoFrame extends JFrame {
 		}
 
 	}
+
+	/**
+	 * wird automatisch als new Runnable aufgerufen lädt das You Logo mit fester
+	 * URL "images/you_point.png" Ruft einfach loadlogos mit dieser URL auf,
+	 * daher wird Logo im Anschluss aus Arraylist wieder gelöscht = Grund
+	 * hierfür ist, dass später Berechnung anhand der arraylist durchgeführt
+	 * werden und eine sauberere Trennung der DB-Tabellen
+	 */
 
 	public void loadYouImage() {
 		// Load "youLogo" | Personal image
@@ -179,6 +205,12 @@ public class LogoFrame extends JFrame {
 
 	}
 
+	/**
+	 * Static Methode um YouLogo anderen Klassen bereitzustellen. Beispielsweise
+	 * Speicherung in der DB
+	 * 
+	 * @return gibt YouLogo zurück
+	 */
 	public static DraggableLogoComponent getYouLogo() {
 		return YouLogo;
 	}

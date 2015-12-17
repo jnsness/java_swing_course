@@ -12,15 +12,38 @@ import java.util.Iterator;
 
 import javax.swing.JTextField;
 
+/**
+ * Klasse mit verschiedenen Methoden zum Speichern von Daten in die Datenbank
+ * Sqlite
+ * 
+ * @author Jnsness
+ *
+ */
 public class DbAccess {
 
 	private Connection c = null;
 	private Statement stmt = null;
 
-
 	public DbAccess() {
 	}
 
+	/**
+	 * Abspeichern der Personen-Informationen in Tabelle personal_info
+	 * 
+	 * 
+	 * @param uuid
+	 *            - Forein Key jeder Tabelle
+	 * @param txtName
+	 *            - Vorname aus FormularWindow
+	 * @param txtNachname
+	 *            - Nachname aus FormularWindow
+	 * @param txtBeruf
+	 *            - Beruf aus FormularWindow
+	 * @param ageSpinner
+	 *            - Alter aus FormularWindow
+	 * @param sexCombo
+	 *            - Geschlecht aus Formularwindow
+	 */
 	public void DbSavePersonalData(String uuid, String txtName,
 			String txtNachname, String txtBeruf, int ageSpinner, int sexCombo) {
 
@@ -64,6 +87,23 @@ public class DbAccess {
 		}
 	}
 
+	/**
+	 * Abspeichern der Logo-Informationen in Tabelle time_info
+	 * 
+	 * Solange Logos in Liste enthalten sind werden Koordinaten, X,Y,
+	 * Mittelpunkt-X, Mittelpunkt-Y vorbereitet Verzweigung ob Logos hinter der
+	 * Außen-Linie liegen Über reguläre Ausdrücke wird die URL
+	 * /Category/image.jpg (Filename) in Kategorie und Logoname aufgeteilt.
+	 * Zerschnitten wird bei den / /. Abspeichern erneut in Array Über
+	 * Vektorberechnung wird Distanz zum YouLogo errechnet = Quadratwurzel
+	 * (SkalarproduktX² + SkalarproduktY²)
+	 * 
+	 * @param uuid
+	 *            - Forein Key jeder Tabelle
+	 * @param logolist
+	 *            - Arraylist, welche alle Logo-Informationen beinhaltet
+	 */
+
 	public void DbSaveLogoData(String uuid,
 			ArrayList<DraggableLogoComponent> logolist) {
 
@@ -87,7 +127,8 @@ public class DbAccess {
 				int centreX = (int) logo.getCentrePoint().getX();
 				int centreY = (int) logo.getCentrePoint().getY();
 
-				if (centreX > 90 && centreX < 810 && centreY > 90 && centreY < 780) {
+				if (centreX > 90 && centreX < 810 && centreY > 90
+						&& centreY < 780) {
 					innerFrame = 1;
 				}
 
@@ -138,7 +179,9 @@ public class DbAccess {
 						+ ","
 						+ centreY
 						+ ","
-						+ innerFrame + "," + distanceSquareRoot + ");";
+						+ innerFrame
+						+ ","
+						+ distanceSquareRoot + ");";
 				stmt.executeUpdate(sql);
 			}
 
@@ -151,6 +194,15 @@ public class DbAccess {
 		}
 
 	}
+
+	/**
+	 * Abspeichern der vergangenen Zeit
+	 * 
+	 * @param uuid
+	 *            - Forein Key aller Tabellen
+	 * @param elapsedSeconds
+	 *            Zeit zwischen Laden des LogoFrames und klick auf Next
+	 */
 
 	public void DbSaveTimeData(String uuid, double elapsedSeconds) {
 
@@ -188,6 +240,25 @@ public class DbAccess {
 			e.printStackTrace();
 		}
 	}
+
+	/**
+	 * Ausrechnen und Abspeichern aller Abstände zueinander in
+	 * compare_brandDistances
+	 * 
+	 * Abfrage über Query aller notwendigen Daten der gleichen UUID Hilfsklasse
+	 * QueryObjectsForCalculationDistances dient dieser Abspeicherung um die
+	 * passenden Daten zu haben loopCache dient als Cache, da keine zwei
+	 * Resultsets ineinander ablaufen können wie eine Schleife Somit werden im
+	 * ResultSet passende Objekte QueryObjectsForCalculationDistances
+	 * instanziiert und der LoopCache Arraylist hinzugefügt Daraufhin läuft For
+	 * Schleife innerhlab einer For Schleife ab um alle Objekte miteianender zu
+	 * verknüpfen (A-B, A-C, A-D...) Sofern Objekt identisch ist (A-A), wird
+	 * dies übersprungen Vektorberechnungn errechnet Distanz zwischen den beiden
+	 * Objekten - Abspeichern in Datenbank
+	 * 
+	 * @param uuid
+	 *            - Forein Key aller Tabellen
+	 */
 
 	public void DbCalculateDistances(String uuid) {
 
@@ -302,6 +373,15 @@ public class DbAccess {
 
 	}
 
+	/**
+	 * Berechnung und Abspeichern der Duchschnittsdistanz aller Logos zueinander
+	 * in avg_distance
+	 * 
+	 * @param uuid
+	 *            - Forein Key für jede Tabelle
+	 * @return - Durchschnittsdistanz aller Logos untereinander
+	 */
+
 	public double DbCalculateAVGDistance(String uuid) {
 		double avgDistanceAs = 0;
 
@@ -348,6 +428,14 @@ public class DbAccess {
 		return avgDistanceAs;
 	}
 
+	/**
+	 * Berechnung und Abspeichern der Duchschnittsdistanz aller Logos zum
+	 * youLogo in avg_distance
+	 * 
+	 * @param uuid
+	 *            Forein Key für jede Tabelle
+	 */
+
 	public void DbCalculateAVGDistanceFromYou(String uuid) {
 		double avgDistanceFromYou = 0;
 
@@ -387,6 +475,19 @@ public class DbAccess {
 		}
 
 	}
+
+	/**
+	 * Errechnen und Abspeichern des Schwerpunkts aller Logos + YouLogo in
+	 * Tabelle gravityPoint Berechnung folgt dem arithmetischen Mittel: Summe
+	 * aller Mittelpunkte der Logos durch Anzahl der Mittelpunkte der Logos
+	 * Summe wird um Mittelpunkt des You-Logos ergänzt und Anzahl + 1, da
+	 * YouLogo nicht in Tabelle logo_info enthalten ist (da ursprünglich nicht
+	 * in arraylist aufgenommen), dies sollte aber mit einkalkuliert werden
+	 * 
+	 * @param uuid
+	 *            Forein Key für jede Tabelle
+	 * @return - 
+	 */
 
 	public Point DbCalculateCentreOfGravity(String uuid) {
 		Point gravityPoint = new Point();
@@ -449,6 +550,23 @@ public class DbAccess {
 		return gravityPoint;
 
 	}
+
+	/**
+	 * Abspeichern der Distanz zum Schwerpunkt jedes Logos über Update in
+	 * logo_info Hilfsklasse QueryObjectsForCalculationGravPointDistances wurde
+	 * erstellt um passende Daten als Objekt zu erstellen Erst wird über Query
+	 * alle Informationen aus Logo-Info mit gleicher UUID geholt und in
+	 * Arraylist als QueryObjectsForCalculationGravPointDistances
+	 * zwischengespeichert (Hintergrund: zwei Resultsets nicht möglich in einem
+	 * Statement)
+	 * Anschließend lief Arraylist durch und updatete den Wert aus Vektorberechnung jedes Logos zum Schwerpunkt
+	 * 
+	 * 
+	 * @param uuid
+	 *            - Foreign Key aller Tabellen
+	 * @param gravityPoint
+	 *            - Errechnet aus Methode DbCalculateCentreOfGravity
+	 */
 
 	public void DbCalculateDistanceFromCentreOfGravity(String uuid,
 			Point gravityPoint) {

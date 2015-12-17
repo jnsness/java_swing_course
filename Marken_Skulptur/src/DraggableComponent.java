@@ -8,6 +8,14 @@ import java.awt.event.MouseMotionListener;
 
 import javax.swing.JComponent;
 
+/**
+ * Dragbare Klasse - adaptiert aus //http://www.codeproject.com/Articles/116088/Draggable-Components-in-Java-Swing
+ * CentrePoint wurde hinzugefügt und mit X + Breite / 2 und Y + Höhe / 2 berechnet. Notwendigkeit war, da ohne diese Änderung der Punkt der Ecke oben-links eines Logos immer ausschlaggebend gewesen wäre
+ * 
+ * @author Jnsness
+ *
+ */
+
 //http://www.codeproject.com/Articles/116088/Draggable-Components-in-Java-Swing
 
 public class DraggableComponent extends JComponent {
