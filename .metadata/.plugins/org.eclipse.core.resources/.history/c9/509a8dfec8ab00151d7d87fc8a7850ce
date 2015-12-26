@@ -106,7 +106,7 @@ public class DraggableLogoComponent extends DraggableComponent implements ImageO
     @Override
     public boolean imageUpdate(Image img, int infoflags, int x, int y, int w, int h) {
         if (infoflags == ALLBITS) {
-            repaint();
+//            repaint();
             setAutoSizeDimension();
             return false;
         }
@@ -193,4 +193,10 @@ public class DraggableLogoComponent extends DraggableComponent implements ImageO
 	public String getFileName() {
 		return fileName;
 	}
+
+
+
+	
+    
+    
 }

@@ -47,7 +47,6 @@ public class LogoFrameView extends JPanel {
 		g.drawLine(810, 90, 90, 90);
 
 		Graphics2D g2d = (Graphics2D) g.create();
-		repaint();
 
 		if (PaintControl == 1) {
 			for (DraggableLogoComponent logo : logolist) {

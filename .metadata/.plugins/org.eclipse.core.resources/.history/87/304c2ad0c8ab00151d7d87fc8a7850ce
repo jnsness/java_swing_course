@@ -176,7 +176,7 @@ public class LogoFrame extends JFrame {
 
 		String cat = FormularWindowView.getImageCategory();
 		if (cat == "frischkaese"){
-			logo.setSize(135,135);
+			logo.setSize(130,130);
 		}
 		else {
 			logo.setSize(75, 75);
@@ -188,7 +188,7 @@ public class LogoFrame extends JFrame {
 
 		logo.calculateCenterPoint();
 
-		repaint();
+		dPanel.repaint();
 
 		if (fileName.equals("images/you_point.png")) {
 			YouLogo = logo;

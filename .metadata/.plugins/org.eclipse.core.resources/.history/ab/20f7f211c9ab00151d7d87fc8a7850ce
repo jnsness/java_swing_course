@@ -193,4 +193,10 @@ public class DraggableLogoComponent extends DraggableComponent implements ImageO
 	public String getFileName() {
 		return fileName;
 	}
+
+
+
+	
+    
+    
 }

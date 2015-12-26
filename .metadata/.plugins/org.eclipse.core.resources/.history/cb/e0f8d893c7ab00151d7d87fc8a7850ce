@@ -146,7 +146,7 @@ public class LogoFrame extends JFrame {
 		String imageUrl = "images/" + FormularWindowView.getImageCategory();
 		File f = new File(imageUrl);
 		File[] fa = f.listFiles();
-		for (int i = 0; i <= fa.length-1; i++) {
+		for (int i = 0; i <= fa.length; i++) {
 			String fileName = String.valueOf(fa[i]);
 			System.out.println(fileName);
 			addNewLogo(fileName);
@@ -174,21 +174,14 @@ public class LogoFrame extends JFrame {
 		logo.setAutoSize(true);
 		logo.setOverbearing(true);
 
-		String cat = FormularWindowView.getImageCategory();
-		if (cat == "frischkaese"){
-			logo.setSize(135,135);
-		}
-		else {
-			logo.setSize(75, 75);
-		}
-		
+		logo.setSize(75, 75);
 
 		logo.setLocation((int) (Math.random() * 830),
 				(int) (Math.random() * 810));
 
 		logo.calculateCenterPoint();
 
-		repaint();
+		dPanel.repaint();
 
 		if (fileName.equals("images/you_point.png")) {
 			YouLogo = logo;

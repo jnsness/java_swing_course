@@ -158,7 +158,7 @@ public class FormularWindowView {
 
 		catComboBox = new JComboBox();
 		catComboBox.setModel(new DefaultComboBoxModel(new String[] { "cars",
-				"fashion" }));
+				"fashion", "frischkaese" }));
 		GridBagConstraints gbc_catComboBox = new GridBagConstraints();
 		gbc_catComboBox.fill = GridBagConstraints.HORIZONTAL;
 		gbc_catComboBox.insets = new Insets(0, 0, 5, 5);

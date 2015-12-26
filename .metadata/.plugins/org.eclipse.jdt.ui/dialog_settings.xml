@@ -71,16 +71,17 @@
 		<item value="true" key="author"/>
 		<item value="false" key="nodeprecated"/>
 		<item value="false" key="nonavbar"/>
-		<item value="" key="docletpath"/>
+		<item value="C:\Users\Jnsness\Downloads\aurigadoclet\bin\AurigaDoclet.jar" key="docletpath"/>
 		<item value="C:\Program Files\Java\jdk1.8.0_45\bin\javadoc.exe;C:\Program Files (x86)\Java\jre1.8.0_25\bin\javadoc.exe" key="javadoc_command_history"/>
 		<item value="1.8" key="source"/>
 		<item value="true" key="version"/>
 		<item value="Marken Skulptur" key="doctitle"/>
-		<item value="" key="docletname"/>
+		<item value="com.aurigalogic.doclet.core.Doclet" key="docletname"/>
 		<item value="true" key="splitindex"/>
-		<item value="true" key="fromStandard"/>
+		<item value="false" key="fromStandard"/>
 		<item value="false" key="notree"/>
 		<item value="C:\Users\Jnsness\Desktop\TestJavaDoc\" key="destdir"/>
+		<item value="-format pdf -out C:\Users\Jnsness\Desktop\javadoc.pdf -notoc -noindex -headertext" key="additionalparam"/>
 		<item value="false" key="openinbrowser"/>
 		<section name="projects">
 			<section name="Marken_Skulptur">

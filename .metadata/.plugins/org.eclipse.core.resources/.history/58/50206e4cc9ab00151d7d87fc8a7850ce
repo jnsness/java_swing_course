@@ -61,6 +61,7 @@ public class LogoFrameView extends JPanel {
 				g2d.drawLine((int) LogoFrame.YouLogo.getCentrePoint().getX(),
 						(int) LogoFrame.YouLogo.getCentrePoint().getY(),
 						(int) gravityPoint.getX(), (int) gravityPoint.getY());
+				repaint();
 			}
 
 		}
